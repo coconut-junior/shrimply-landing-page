@@ -1,8 +1,16 @@
 #root {
   margin: auto;
-  text-align: center;
+  --colorPrimary: red;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin: 0;
+  width: 100%;
 }
 
 p {
   line-height: 150%;
+  font-size: 18px;
 }
