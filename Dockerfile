@@ -1,8 +1,16 @@
-FROM denoland/deno:latest
+FROM denoland/deno:latest AS builder
 
 WORKDIR /app
-COPY . .
+COPY deno.json deno.lock ./
+RUN deno cache --lock=deno.lock --lock-write deno.json
 
-EXPOSE 8000
-CMD ["deno", "install"]
-CMD ["deno", "run", "dev"]
+COPY . .
+RUN deno task build
+
+FROM nginx:alpine AS production
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
