@@ -1,11 +1,10 @@
-FROM denoland/deno:latest AS builder
+FROM denoland/deno:latest
 
 WORKDIR /app
-COPY deno.json deno.lock ./
-RUN deno cache --lock=deno.lock --lock-write deno.json
-
 COPY . .
-RUN deno task build
+
+CMD ["deno", "install"]
+CMD ["deno", "run", "build"]
 
 FROM nginx:alpine AS production
 

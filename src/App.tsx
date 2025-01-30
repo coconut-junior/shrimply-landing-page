@@ -1,7 +1,6 @@
 import './App.css';
 import { Button } from 'antd';
 import { Layout } from 'antd';
-import { Footer, Header } from 'antd/es/layout/layout';
 import { Content } from 'antd/es/layout/layout';
 import { Image } from 'antd';
 import { Flex } from 'antd';
