@@ -3,7 +3,7 @@
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.25rem, calc(2rem + 3vw), 4.5rem);
   line-height: 1.1;
   margin: auto;
   width: 100%;
