@@ -1,4 +1,4 @@
-FROM denoland/deno:latest
+FROM denoland/deno:latest AS builder
 
 WORKDIR /app
 COPY . .
