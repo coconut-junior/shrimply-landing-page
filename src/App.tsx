@@ -2,7 +2,7 @@ import './App.css';
 import { Button, ConfigProvider, Card } from 'antd';
 import { Layout } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
-import { Image, Carousel } from 'antd';
+import { Image } from 'antd';
 import { Flex } from 'antd';
 import {
   ArrowRightOutlined,
