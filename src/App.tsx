@@ -37,7 +37,7 @@ function App() {
               gap="10px"
               wrap={true}
               style={{
-                maxWidth: '350px',
+                maxWidth: '400px',
                 padding: '20px',
               }}
             >
