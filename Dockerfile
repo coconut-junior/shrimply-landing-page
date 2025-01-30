@@ -3,8 +3,8 @@ FROM denoland/deno:latest AS builder
 WORKDIR /app
 COPY . .
 
-CMD ["deno", "install"]
-CMD ["deno", "run", "build"]
+RUN deno install
+RUN deno run build
 
 FROM nginx:alpine AS production
 
