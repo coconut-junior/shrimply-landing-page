@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     networks:
       custom_net:
-        ipv4_address: 10.0.1.99
+        ipv4_address: 10.0.1.24
 
 networks:
   custom_net:
