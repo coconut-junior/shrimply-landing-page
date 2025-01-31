@@ -1,7 +1,14 @@
-version: '3.7'
 services:
-  deno_app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
+  cloudflared:
+    container_name: cloudflare-tunnel
+    image: 'cloudflare/cloudflared:latest'
+    restart: unless-stopped
+    command: 'tunnel --no-autoupdate run'
+    environment:
+      - 'TUNNEL_TOKEN=${TUNNEL_TOKEN}'
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true
