@@ -6,11 +6,9 @@ COPY . .
 RUN deno install
 RUN deno run build
 
-FROM ubuntu:latest AS production
-
-RUN apt-get -y update && apt-get -y install nginx
+FROM nginx:alpine AS production
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
