@@ -18,8 +18,6 @@ import { useState } from 'react';
 import { Popup } from './Popup';
 
 function App() {
-  const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
