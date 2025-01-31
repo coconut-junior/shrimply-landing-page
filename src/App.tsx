@@ -215,7 +215,6 @@ function App() {
       </Layout>
       <Modal
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
         centered={true}

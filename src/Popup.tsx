@@ -19,7 +19,9 @@ export function Popup() {
           data-element="header"
           style={{ color: 'rgb(49, 42, 42)', fontSize: 27, fontWeight: 700 }}
         >
-          <h2>🎁 Get Free Custom LEGO Building Instructions!</h2>
+          <h2>
+            🎁 Get Free Custom <br></br>Building Instructions!
+          </h2>
         </div>
         <div
           className="formkit-subheader"
