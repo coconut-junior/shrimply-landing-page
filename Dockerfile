@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y nginx curl && \
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN echo "$TUNNEL_TOKEN"
-RUN echo "${TUNNEL_TOKEN}"
+# Create startup script
+RUN echo '#!/bin/bash\ncloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN --loglevel debug &\nnginx -g "daemon off;"' > /start.sh && \
+    chmod +x /start.sh
 
-CMD ["cloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN"]
+CMD ["./start.sh"]
