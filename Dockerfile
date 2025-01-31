@@ -24,4 +24,4 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN echo '#!/bin/bash\ncloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN &\nnginx -g "daemon off;"' > /start.sh && \
     chmod +x /start.sh
 
-CMD ["/start.sh"]
+CMD ["./start.sh"]
