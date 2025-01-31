@@ -4,14 +4,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-  ports:
-    - '1234:80'
-  restart: always
+    ports:
+      - '1234:80'
+    restart: always
 
-tunnel:
-  container_name: cloudflared-tunnel
-  image: cloudflare/cloudflared
-  restart: unless-stopped
-  command: tunnel run
-  environment:
-    - 'TUNNEL_TOKEN=${TUNNEL_TOKEN}'
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - 'TUNNEL_TOKEN=${TUNNEL_TOKEN}'
