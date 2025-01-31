@@ -6,7 +6,7 @@ COPY . .
 RUN deno install
 RUN deno run build
 
-FROM ubuntu:latest AS production
+FROM nginx:ubuntu AS production
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
