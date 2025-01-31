@@ -7,7 +7,7 @@ import { Flex } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
 import bubbaDon from './images/bubba_don.png';
-import ProductCard from './ProductCard.tsx';
+import { ProductCard } from './ProductCard';
 
 function App() {
   const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
