@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
