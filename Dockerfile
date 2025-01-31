@@ -19,11 +19,9 @@ RUN adduser -D cloudflared
 
 USER cloudflared
 
-CMD curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && 
+CMD curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
 
-sudo dpkg -i cloudflared.deb && 
-
-sudo cloudflared service install eyJhIjoiYTRkOWJlMmFhMTZkMDZjODVjYzdiZGM4ZDgwYmRhZmQiLCJ0IjoiZmMyODAzMmUtZWQ0OC00ZjA0LThkOWYtZThlMzM3Nzg3Y2QyIiwicyI6Ill6bGlZemhtTVdRdE5UVXdPQzAwTW1OaExUbGhOVFl0TmpFNFlUUTFZekprTkdKbSJ9
+CMD sudo dpkg -i cloudflared.deb
 
 # Start both nginx and cloudflared
 CMD nginx -g 'daemon off;' & cloudflared tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
