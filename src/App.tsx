@@ -17,15 +17,12 @@ import { ProductCard } from './ProductCard';
 import { useState } from 'react';
 import { Popup } from './Popup';
 
+
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
@@ -40,6 +37,7 @@ function App() {
         <>
           <p>You have several options:</p>
           <ul>
+            
             <li>
               Buy individual parts from online brick stores like{' '}
               <a target="_blank" href="https://www.bricklink.com/v2/main.page">
@@ -49,6 +47,9 @@ function App() {
               <a target="_blank" href="https://www.brickowl.com/">
                 Brick Owl
               </a>
+            </li>
+            <li>
+              Buy common parts from LEGO's Pick a Brick service
             </li>
             <li>Use parts from your existing LEGO collection</li>
           </ul>
@@ -203,7 +204,7 @@ function App() {
           <br></br>
         </Content>
 
-        <Footer>
+        <Footer style = {{backgroundColor:magenta[1]}}>
           <p>
             Copyright © 2025 Momonga Software LLC
             <br></br>
