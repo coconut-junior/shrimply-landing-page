@@ -31,7 +31,7 @@ function App() {
             </li>
             <li>
               Buy individual parts from online brick stores like{' '}
-              <a src="https://www.bricklink.com/v2/main.page">BrickLink</a>
+              <a href="https://www.bricklink.com/v2/main.page">BrickLink</a>
             </li>
             <li>Use parts from your existing LEGO collection</li>
           </ul>
