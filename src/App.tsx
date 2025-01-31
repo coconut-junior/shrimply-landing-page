@@ -10,6 +10,7 @@ import {
   FileExclamationOutlined,
 } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
+import bubbaDon from './images/bubba_don.png';
 
 function App() {
   const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
@@ -68,7 +69,7 @@ function App() {
                 </Button> */}
               </Flex>
             </Flex>
-            <Image preview={false} src="/src/assets/bubba_don.png"></Image>
+            <Image preview={false} src={bubbaDon}></Image>
           </Flex>
 
           {/* product list */}
