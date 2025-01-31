@@ -31,7 +31,7 @@ export function ProductCard({ title, src, partCount }: productProps) {
           Get Instructions
         </a>,
       ]}
-      style={{ width: 300 }}
+      style={{ width: 300,borderColor:'lightgray',overflow:'hidden' }}
       cover={<Image src={src}></Image>}
     >
       <Flex gap="10px" justify="center">
