@@ -8,12 +8,17 @@ RUN deno run build
 
 FROM ubuntu:latest AS production
 
+# Install nginx and cloudflared
+RUN apt-get update && apt-get install -y nginx curl && \
+    curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && \
+    dpkg -i cloudflared.deb && \
+    rm cloudflared.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy built files and nginx configuration
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Download and install cloudflared
-RUN wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O /usr/local/bin/cloudflared && \
-    chmod +x /usr/local/bin/cloudflared
 
 # Create a non-root user
 RUN adduser -D cloudflared
