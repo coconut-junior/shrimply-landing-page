@@ -12,6 +12,8 @@ import {
 import { magenta } from '@ant-design/colors';
 
 function App() {
+  const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
+
   return (
     <ConfigProvider
       theme={{
@@ -51,16 +53,22 @@ function App() {
                 download. You won't find these anywhere else!
               </p>
               <Flex justify="center" align="center" gap="small">
-                <Button type="primary" size="large" style={{ padding: '24px' }}>
-                  Get Free Instructions
-                  <ArrowRightOutlined></ArrowRightOutlined>
-                </Button>
+                <a href={url}>
+                  <Button
+                    type="primary"
+                    size="large"
+                    style={{ padding: '24px' }}
+                  >
+                    Get Free Instructions
+                    <ArrowRightOutlined></ArrowRightOutlined>
+                  </Button>
+                </a>
                 {/* <Button size="large" style={{ padding: '24px' }}>
                   Learn More
                 </Button> */}
               </Flex>
             </Flex>
-            <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-200176/471708.png/1000x800.png?1737139837.6408758"></Image>
+            <Image preview={false} src="/src/assets/bubba_don.png"></Image>
           </Flex>
 
           {/* product list */}
@@ -70,7 +78,7 @@ function App() {
             <Flex justify="center" gap="10px" wrap={true}>
               <Card
                 title="Floating Tiki Bar"
-                actions={[<a>Get Instructions</a>]}
+                actions={[<a href={url}>Get Instructions</a>]}
                 style={{ width: 300 }}
                 cover={
                   <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-196096/445564.png/1000x800.png?1738273833.516188"></Image>
@@ -84,7 +92,7 @@ function App() {
 
               <Card
                 title="Vending Machine"
-                actions={[<a>Get Instructions</a>]}
+                actions={[<a href={url}>Get Instructions</a>]}
                 style={{ width: 300 }}
                 cover={
                   <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-194726/436269.png/1000x800.png?1738096800.272604"></Image>
@@ -98,7 +106,7 @@ function App() {
 
               <Card
                 title="Garden Fountain"
-                actions={[<a>Get Instructions</a>]}
+                actions={[<a href={url}>Get Instructions</a>]}
                 style={{ width: 300 }}
                 cover={
                   <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-202320/487066.png/1000x800.png?1737640216.1509137"></Image>
@@ -117,7 +125,13 @@ function App() {
         </Content>
 
         <Footer>
-          <p>Copyright © 2025 Momonga Software LLC All rights reserved.</p>
+          <p>
+            Copyright © 2025 Momonga Software LLC
+            <br></br>
+            Disclaimer: LEGO is a trademark of the LEGO Group of companies
+            (https://www.lego.com) which does not sponsor, authorize or endorse
+            this site.
+          </p>
         </Footer>
       </Layout>
     </ConfigProvider>
