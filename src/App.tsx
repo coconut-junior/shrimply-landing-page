@@ -1,16 +1,13 @@
 import './App.css';
-import { Button, ConfigProvider, Card } from 'antd';
+import { Button, ConfigProvider } from 'antd';
 import { Layout } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
 import { Image } from 'antd';
 import { Flex } from 'antd';
-import {
-  ArrowRightOutlined,
-  BuildOutlined,
-  FileExclamationOutlined,
-} from '@ant-design/icons';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
 import bubbaDon from './images/bubba_don.png';
+import ProductCard from './ProductCard.tsx';
 
 function App() {
   const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
@@ -26,12 +23,17 @@ function App() {
     >
       <Layout>
         <Content style={{ background: 'white' }}>
+          {/* hero */}
           <Flex
             wrap={true}
-            gap="20px"
+            gap="40px"
             justify="center"
             align="center"
-            style={{ borderRadius: '20px', backgroundColor: magenta[1] }}
+            style={{
+              borderRadius: '20px',
+              backgroundColor: magenta[1],
+              marginBottom: 80,
+            }}
           >
             <Flex
               vertical={true}
@@ -69,7 +71,11 @@ function App() {
                 </Button> */}
               </Flex>
             </Flex>
-            <Image preview={false} src={bubbaDon}></Image>
+            <Image
+              preview={false}
+              style={{ position: 'relative', top: '100px' }}
+              src={bubbaDon}
+            ></Image>
           </Flex>
 
           {/* product list */}
@@ -77,47 +83,23 @@ function App() {
           <Flex vertical={true} style={{ padding: '20px' }}>
             <h2>Most Popular Builds</h2>
             <Flex justify="center" gap="10px" wrap={true}>
-              <Card
-                title="Floating Tiki Bar"
-                actions={[<a href={url}>Get Instructions</a>]}
-                style={{ width: 300 }}
-                cover={
-                  <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-196096/445564.png/1000x800.png?1738273833.516188"></Image>
-                }
-              >
-                <Flex gap="5px" justify="center">
-                  <BuildOutlined /> 268 Parts
-                  <FileExclamationOutlined /> Instructions only
-                </Flex>
-              </Card>
+              <ProductCard
+                title="Tiki Bar"
+                src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-196096/445564.png/1000x800.png?1738273833.516188"
+                partCount={268}
+              ></ProductCard>
 
-              <Card
+              <ProductCard
                 title="Vending Machine"
-                actions={[<a href={url}>Get Instructions</a>]}
-                style={{ width: 300 }}
-                cover={
-                  <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-194726/436269.png/1000x800.png?1738096800.272604"></Image>
-                }
-              >
-                <Flex gap="5px" justify="center">
-                  <BuildOutlined /> 96 Parts
-                  <FileExclamationOutlined /> Instructions only
-                </Flex>
-              </Card>
+                src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-194726/436269.png/1000x800.png?1738096800.272604"
+                partCount={96}
+              ></ProductCard>
 
-              <Card
+              <ProductCard
                 title="Garden Fountain"
-                actions={[<a href={url}>Get Instructions</a>]}
-                style={{ width: 300 }}
-                cover={
-                  <Image src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-202320/487066.png/1000x800.png?1737640216.1509137"></Image>
-                }
-              >
-                <Flex gap="5px" justify="center">
-                  <BuildOutlined /> 180 Parts
-                  <FileExclamationOutlined /> Instructions only
-                </Flex>
-              </Card>
+                src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-202320/487066.png/1000x800.png?1737640216.1509137"
+                partCount={180}
+              ></ProductCard>
             </Flex>
           </Flex>
           <br></br>
