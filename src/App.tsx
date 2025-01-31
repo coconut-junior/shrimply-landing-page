@@ -7,15 +7,32 @@ import {
   Flex,
   Collapse,
   CollapseProps,
+  Modal,
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
 import bubbaDon from './images/bubba_don.png';
 import { ProductCard } from './ProductCard';
+import { useState } from 'react';
+import { Popup } from './Popup';
 
 function App() {
   const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const faqItems: CollapseProps['items'] = [
     {
@@ -27,7 +44,13 @@ function App() {
           <ul>
             <li>
               Buy individual parts from online brick stores like{' '}
-              <a href="https://www.bricklink.com/v2/main.page">BrickLink</a>
+              <a target="_blank" href="https://www.bricklink.com/v2/main.page">
+                BrickLink
+              </a>{' '}
+              or{' '}
+              <a target="_blank" href="https://www.brickowl.com/">
+                Brick Owl
+              </a>
             </li>
             <li>Use parts from your existing LEGO collection</li>
           </ul>
@@ -65,8 +88,11 @@ function App() {
           that offer high quality parts at a fraction of the price.
           <br></br>
           Our recommendation is to try ordering from
-          <a href="https://www.webrick.com/"> Webrick</a>. They offer excellent
-          prices without compromising on quality.
+          <a target="_blank" href="https://www.webrick.com/">
+            {' '}
+            Webrick
+          </a>
+          . They offer excellent prices without compromising on quality.
         </p>
       ),
     },
@@ -112,8 +138,8 @@ function App() {
               <p>
                 Ever wanted to build something cool that wasn't an official LEGO
                 set? Shrimply Bricks makes it easy. We've got custom building
-                instructions for a whole variety of themes that you can
-                download. You won't find these anywhere else!
+                instructions for a whole variety of themes that you can choose
+                from. These unique builds can't be found anywhere else!
               </p>
               <Flex
                 justify="left"
@@ -122,16 +148,15 @@ function App() {
                 wrap={true}
                 style={{ width: '100%' }}
               >
-                <a href={url}>
-                  <Button
-                    type="primary"
-                    size="large"
-                    style={{ padding: '24px' }}
-                  >
-                    Get Free Instructions
-                    <ArrowRightOutlined></ArrowRightOutlined>
-                  </Button>
-                </a>
+                <Button
+                  onClick={showModal}
+                  type="primary"
+                  size="large"
+                  style={{ padding: '24px' }}
+                >
+                  Get Free Instructions
+                  <ArrowRightOutlined></ArrowRightOutlined>
+                </Button>
                 <a href="#faq">
                   <Button size="large" style={{ padding: '24px' }}>
                     Learn More
@@ -190,6 +215,19 @@ function App() {
           </p>
         </Footer>
       </Layout>
+      <Modal
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        centered={true}
+        mask={true}
+        wrapClassName="modal"
+        width={'700px'}
+      >
+        <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+        <Popup></Popup>
+      </Modal>
     </ConfigProvider>
   );
 }

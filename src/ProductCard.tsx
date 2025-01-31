@@ -26,7 +26,11 @@ export function ProductCard({ title, src, partCount }: productProps) {
   return (
     <Card
       title={title}
-      actions={[<a href={url}>Get Instructions</a>]}
+      actions={[
+        <a target="_blank" href={url}>
+          Get Instructions
+        </a>,
+      ]}
       style={{ width: 300 }}
       cover={<Image src={src}></Image>}
     >

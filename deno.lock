@@ -9,6 +9,7 @@
     "npm:@vitejs/plugin-react@^4.3.4": "4.3.4_vite@6.0.11_@babel+core@7.26.7",
     "npm:ant-design@1": "1.0.0",
     "npm:antd@^5.23.3": "5.23.3_react@18.3.1_react-dom@18.3.1__react@18.3.1_dayjs@1.11.13",
+    "npm:dompurify@^3.2.4": "3.2.4",
     "npm:eslint-plugin-react-hooks@5": "5.1.0_eslint@9.19.0",
     "npm:eslint-plugin-react-refresh@~0.4.16": "0.4.18_eslint@9.19.0",
     "npm:eslint@^9.17.0": "9.19.0",
@@ -620,6 +621,9 @@
         "csstype"
       ]
     },
+    "@types/trusted-types@2.0.7": {
+      "integrity": "sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw=="
+    },
     "@typescript-eslint/eslint-plugin@8.22.0_@typescript-eslint+parser@8.22.0__eslint@9.19.0__typescript@5.6.3_eslint@9.19.0_typescript@5.6.3": {
       "integrity": "sha512-4Uta6REnz/xEJMvwf72wdUnC3rr4jAQf5jnTkeRQ9b6soxLxhDEbS/pfMPoJLDfFPNVRdryqWUIV/2GZzDJFZw==",
       "dependencies": [
@@ -895,6 +899,12 @@
     },
     "deep-is@0.1.4": {
       "integrity": "sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ=="
+    },
+    "dompurify@3.2.4": {
+      "integrity": "sha512-ysFSFEDVduQpyhzAob/kkuJjf5zWkZD8/A9ywSp1byueyuCfHamrCBa14/Oc2iiB0e51B+NpxSl5gmzn+Ms/mg==",
+      "dependencies": [
+        "@types/trusted-types"
+      ]
     },
     "electron-to-chromium@1.5.90": {
       "integrity": "sha512-C3PN4aydfW91Natdyd449Kw+BzhLmof6tzy5W1pFC5SpQxVXT+oyiyOG9AgYYSN9OdA/ik3YkCrpwqI8ug5Tug=="
@@ -1935,6 +1945,7 @@
         "npm:@vitejs/plugin-react@^4.3.4",
         "npm:ant-design@1",
         "npm:antd@^5.23.3",
+        "npm:dompurify@^3.2.4",
         "npm:eslint-plugin-react-hooks@5",
         "npm:eslint-plugin-react-refresh@~0.4.16",
         "npm:eslint@^9.17.0",
