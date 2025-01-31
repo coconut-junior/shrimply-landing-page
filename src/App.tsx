@@ -26,10 +26,6 @@ function App() {
           <p>You have several options:</p>
           <ul>
             <li>
-              Purchase complete MOC kits that include all required parts and
-              instructions
-            </li>
-            <li>
               Buy individual parts from online brick stores like{' '}
               <a href="https://www.bricklink.com/v2/main.page">BrickLink</a>
             </li>
@@ -106,7 +102,7 @@ function App() {
               gap="10px"
               wrap={true}
               style={{
-                maxWidth: '400px',
+                maxWidth: '450px',
                 padding: '20px',
               }}
             >
@@ -119,7 +115,13 @@ function App() {
                 instructions for a whole variety of themes that you can
                 download. You won't find these anywhere else!
               </p>
-              <Flex justify="center" align="center" gap="small">
+              <Flex
+                justify="left"
+                align="center"
+                gap="small"
+                wrap={true}
+                style={{ width: '100%' }}
+              >
                 <a href={url}>
                   <Button
                     type="primary"
@@ -130,9 +132,11 @@ function App() {
                     <ArrowRightOutlined></ArrowRightOutlined>
                   </Button>
                 </a>
-                {/* <Button size="large" style={{ padding: '24px' }}>
-                  Learn More
-                </Button> */}
+                <a href="#faq">
+                  <Button size="large" style={{ padding: '24px' }}>
+                    Learn More
+                  </Button>
+                </a>
               </Flex>
             </Flex>
             <Image
@@ -168,7 +172,7 @@ function App() {
           </Flex>
 
           <Flex vertical={true} style={{ padding: '20px' }}>
-            <h2>Frequently Asked Questions</h2>
+            <h2 id="faq">Frequently Asked Questions</h2>
             <Collapse items={faqItems} style={{ fontSize: '18px' }}></Collapse>
           </Flex>
           <br></br>
