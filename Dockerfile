@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y nginx curl && \
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN "echo $TUNNEL_TOKEN"
-RUN "echo ${TUNNEL_TOKEN}"
+RUN echo "$TUNNEL_TOKEN"
+RUN echo "${TUNNEL_TOKEN}"
 
 CMD ["cloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN"]
