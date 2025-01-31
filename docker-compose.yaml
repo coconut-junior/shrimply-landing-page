@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  deno_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - 'TUNNEL_TOKEN=${TUNNEL_TOKEN}'
