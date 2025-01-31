@@ -1,9 +1,14 @@
 import './App.css';
-import { Button, ConfigProvider } from 'antd';
-import { Layout } from 'antd';
+import {
+  Button,
+  ConfigProvider,
+  Layout,
+  Image,
+  Flex,
+  Collapse,
+  CollapseProps,
+} from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
-import { Image } from 'antd';
-import { Flex } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
 import bubbaDon from './images/bubba_don.png';
@@ -11,6 +16,65 @@ import { ProductCard } from './ProductCard';
 
 function App() {
   const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
+
+  const faqItems: CollapseProps['items'] = [
+    {
+      key: '1',
+      label: 'How do I get the parts needed?',
+      children: (
+        <>
+          <p>You have several options:</p>
+          <ul>
+            <li>
+              Purchase complete MOC kits that include all required parts and
+              instructions
+            </li>
+            <li>
+              Buy individual parts from online brick stores like{' '}
+              <a src="https://www.bricklink.com/v2/main.page">BrickLink</a>
+            </li>
+            <li>Use parts from your existing LEGO collection</li>
+          </ul>
+        </>
+      ),
+    },
+    {
+      key: '2',
+      label: 'What is a LEGO MOC?',
+      children: (
+        <p>
+          A MOC (My Own Creation) is a custom LEGO creation designed from
+          scratch by LEGO enthusiasts rather than an official LEGO set.
+        </p>
+      ),
+    },
+    {
+      key: '3',
+      label: 'Is building MOCs expensive?',
+      children: (
+        <p>
+          It depends on how many parts you need to order. We try to design MOCs
+          with cost in mind, using the most common parts and offering different
+          size MOCs to account for different budgets.
+        </p>
+      ),
+    },
+    {
+      key: '4',
+      label: 'LEGO pieces cost too much!',
+      children: (
+        <p>
+          If you're not willing to pay full price for genuine LEGO parts, we
+          have a solution for you! There are many LEGO compatible part vendors
+          that offer high quality parts at a fraction of the price.
+          <br></br>
+          Our recommendation is to try ordering from
+          <a href="https://www.webrick.com/"> Webrick</a>. They offer excellent
+          prices without compromising on quality.
+        </p>
+      ),
+    },
+  ];
 
   return (
     <ConfigProvider
@@ -84,7 +148,7 @@ function App() {
             <h2>Most Popular Builds</h2>
             <Flex justify="center" gap="10px" wrap={true}>
               <ProductCard
-                title="Tiki Bar"
+                title="Floating Tiki Bar"
                 src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-196096/445564.png/1000x800.png?1738273833.516188"
                 partCount={268}
               ></ProductCard>
@@ -101,6 +165,11 @@ function App() {
                 partCount={180}
               ></ProductCard>
             </Flex>
+          </Flex>
+
+          <Flex vertical={true} style={{ padding: '20px' }}>
+            <h2>Frequently Asked Questions</h2>
+            <Collapse items={faqItems} style={{ fontSize: '18px' }}></Collapse>
           </Flex>
           <br></br>
           <br></br>
