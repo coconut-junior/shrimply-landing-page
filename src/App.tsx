@@ -14,14 +14,22 @@ import {
 import { Content, Footer } from 'antd/es/layout/layout';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
-import bubbaDon from './images/bubba_don.png';
 import { ProductCard } from './ProductCard';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Popup } from './Popup';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   type MenuItem = Required<MenuProps>['items'][number];
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data fetching
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -115,16 +123,16 @@ function App() {
       }}
     >
       <Layout>
-        <Menu mode = "horizontal" items = {navItems} style = {{justifyContent:'center',border:'none'}}></Menu>
-        <Content style={{ background: 'white' }}>
+        <Menu mode = "horizontal" items = {navItems} style = {{justifyContent:'center',border:'none',padding:'10px',paddingTop:'20px'}}></Menu>
+        <Content id = 'wrapper'>
           {/* hero */}
           <Flex
+            id = "hero"
             wrap={true}
             gap="40px"
             justify="center"
             align="center"
             style={{
-              borderRadius: '20px',
               backgroundColor: magenta[1],
               marginBottom: 80,
             }}
@@ -172,10 +180,10 @@ function App() {
                 </a>
               </Flex>
             </Flex>
-            <Image
+            <Image id = "hero-image"
               preview={false}
               style={{ position: 'relative', top: '100px' }}
-              src={bubbaDon}
+              src='./bubba_don.png'
             ></Image>
           </Flex>
 
@@ -186,23 +194,26 @@ function App() {
             <Flex justify="center" gap="10px" wrap={true}>
               <ProductCard
                 title="Floating Tiki Bar"
-                src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-196096/445564.png/1000x800.png?1738273833.516188"
+                src="tiki_bar_1000x800.png"
                 partCount={268}
                 clickEvent={showModal}
+                loading={loading}
               ></ProductCard>
 
               <ProductCard
                 title="Vending Machine"
-                src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-194726/436269.png/1000x800.png?1738096800.272604"
+                src="vending_machine_1000x800.png"
                 partCount={96}
                 clickEvent={showModal}
+                loading={loading}
               ></ProductCard>
 
               <ProductCard
                 title="Garden Fountain"
-                src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-202320/487066.png/1000x800.png?1737640216.1509137"
+                src="garden_fountain.png"
                 partCount={180}
                 clickEvent={showModal}
+                loading={loading}
               ></ProductCard>
             </Flex>
           </Flex>

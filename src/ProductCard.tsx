@@ -1,4 +1,4 @@
-import { Card, Image, Flex } from 'antd';
+import { Card, Image, Flex, Spin } from 'antd';
 import { FileExclamationOutlined, DownloadOutlined } from '@ant-design/icons';
 
 interface productProps {
@@ -6,6 +6,7 @@ interface productProps {
   src: string;
   partCount: number;
   clickEvent: any;
+  loading: any;
 }
 
 function PartIcon() {
@@ -21,10 +22,11 @@ function PartIcon() {
   );
 }
 
-export function ProductCard({ title, src, partCount, clickEvent }: productProps) {
+export function ProductCard({ title, src, partCount, clickEvent, loading }: productProps) {
   return (
     <Card
       title={title}
+      loading={loading}
       actions={[
         <a onClick={clickEvent}>
           Get Instructions <DownloadOutlined/>
