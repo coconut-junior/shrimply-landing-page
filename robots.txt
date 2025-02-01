@@ -1,0 +1,11 @@
+User-agent: *
+
+# Specific rules for Googlebot
+User-agent: Googlebot
+Allow: /about/company/
+Disallow: /staging/
+
+# Specific rules for Bingbot
+User-agent: Bingbot
+Allow: /about/company/
+Disallow: /staging/
