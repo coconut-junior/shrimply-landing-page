@@ -1,4 +1,4 @@
-import { Card, Image, Flex, Spin } from 'antd';
+import { Card, Image, Flex } from 'antd';
 import { FileExclamationOutlined, DownloadOutlined } from '@ant-design/icons';
 
 interface productProps {
