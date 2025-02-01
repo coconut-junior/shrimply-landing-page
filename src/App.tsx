@@ -8,6 +8,8 @@ import {
   Collapse,
   CollapseProps,
   Modal,
+  Menu,
+  MenuProps
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
 import { ArrowRightOutlined } from '@ant-design/icons';
@@ -17,17 +19,23 @@ import { ProductCard } from './ProductCard';
 import { useState } from 'react';
 import { Popup } from './Popup';
 
-
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  type MenuItem = Required<MenuProps>['items'][number];
 
   const showModal = () => {
     setIsModalOpen(true);
   };
-
+  
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const navItems: MenuItem[] = [
+    { key: '1',disabled:true, icon:<img src = "./shrimp-icon.png" height={48}></img> },
+    // { key: '2', label:  <a href = "mailto:contact@jbx.design">Contact</a> },
+    // { key: '3', label: 'Option 3' }
+  ];
 
   const faqItems: CollapseProps['items'] = [
     {
@@ -107,6 +115,7 @@ function App() {
       }}
     >
       <Layout>
+        <Menu mode = "horizontal" items = {navItems} style = {{justifyContent:'center',border:'none'}}></Menu>
         <Content style={{ background: 'white' }}>
           {/* hero */}
           <Flex
@@ -179,18 +188,21 @@ function App() {
                 title="Floating Tiki Bar"
                 src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-196096/445564.png/1000x800.png?1738273833.516188"
                 partCount={268}
+                clickEvent={showModal}
               ></ProductCard>
 
               <ProductCard
                 title="Vending Machine"
                 src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-194726/436269.png/1000x800.png?1738096800.272604"
                 partCount={96}
+                clickEvent={showModal}
               ></ProductCard>
 
               <ProductCard
                 title="Garden Fountain"
                 src="https://cdn.rebrickable.com/media/thumbs/mocs/moc-202320/487066.png/1000x800.png?1737640216.1509137"
                 partCount={180}
+                clickEvent={showModal}
               ></ProductCard>
             </Flex>
           </Flex>
@@ -204,7 +216,7 @@ function App() {
           <br></br>
         </Content>
 
-        <Footer style = {{backgroundColor:magenta[1]}}>
+        <Footer >
           <p>
             Copyright © 2025 Momonga Software LLC
             <br></br>

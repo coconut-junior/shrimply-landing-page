@@ -1,12 +1,11 @@
 import { Card, Image, Flex } from 'antd';
-import { FileExclamationOutlined } from '@ant-design/icons';
-
-const url = 'https://jimmy-blanck.kit.com/04e00b1c2d';
+import { FileExclamationOutlined, DownloadOutlined } from '@ant-design/icons';
 
 interface productProps {
   title: string;
   src: string;
   partCount: number;
+  clickEvent: any;
 }
 
 function PartIcon() {
@@ -22,13 +21,13 @@ function PartIcon() {
   );
 }
 
-export function ProductCard({ title, src, partCount }: productProps) {
+export function ProductCard({ title, src, partCount, clickEvent }: productProps) {
   return (
     <Card
       title={title}
       actions={[
-        <a target="_blank" href={url}>
-          Get Instructions
+        <a onClick={clickEvent}>
+          Get Instructions <DownloadOutlined/>
         </a>,
       ]}
       style={{ width: 300,borderColor:'lightgray',overflow:'hidden' }}
