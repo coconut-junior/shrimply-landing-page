@@ -1,4 +1,4 @@
-FROM denoland/deno:latest AS builder
+FROM denoland/deno:latest
 
 WORKDIR /app
 COPY . .
@@ -6,9 +6,4 @@ COPY . .
 RUN deno install
 RUN deno run build
 
-FROM nginx:alpine AS production
-
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["deno", "run", "serve"]

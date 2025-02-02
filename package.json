@@ -7,14 +7,22 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "deno run --allow-env --allow-net --allow-read server/main.ts"
+  },
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "deno.ns"]
   },
   "dependencies": {
     "@ant-design/colors": "^7.2.0",
     "@ant-design/icons": "^5.6.0",
     "ant-design": "^1.0.0",
     "antd": "^5.23.3",
+    "cors": "^2.8.5",
     "dompurify": "^3.2.4",
+    "express": "^4.21.2",
+    "oak": "^9.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",

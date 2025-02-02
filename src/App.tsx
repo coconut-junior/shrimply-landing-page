@@ -14,9 +14,9 @@ import {
 import { Content, Footer } from 'antd/es/layout/layout';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { magenta } from '@ant-design/colors';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
-import { Popup } from './Popup';
+import { Popup } from './Popup.tsx';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
