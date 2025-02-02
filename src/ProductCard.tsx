@@ -1,7 +1,6 @@
 import { Card, Image, Flex } from 'antd';
 import { FileExclamationOutlined, DownloadOutlined, ShoppingOutlined } from '@ant-design/icons';
 import 'dotenv/config';
-import * as process from "node:process";
 
 interface productProps {
   title: string;
@@ -13,7 +12,7 @@ interface productProps {
 }
 
 function buy() {
-  fetch(`${process.env.CLIENT_URL}/create-checkout-session`, {
+  fetch(`${Deno.env.get("CLIENT_URL")}/create-checkout-session`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
