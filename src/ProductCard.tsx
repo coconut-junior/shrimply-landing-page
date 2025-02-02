@@ -1,6 +1,5 @@
 import { Card, Image, Flex } from 'antd';
 import { FileExclamationOutlined, DownloadOutlined, ShoppingOutlined } from '@ant-design/icons';
-import 'dotenv/config';
 
 interface productProps {
   title: string;
@@ -12,7 +11,8 @@ interface productProps {
 }
 
 function buy() {
-  fetch(`${Deno.env.get("CLIENT_URL")}/create-checkout-session`, {
+  const domain = globalThis.location.origin;
+  fetch(`${domain}/create-checkout-session`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
