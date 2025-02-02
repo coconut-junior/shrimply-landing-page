@@ -57,7 +57,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(request.body, sig, webhookSecret);
+    event = await stripe.webhooks.constructEventAsync(request.body, sig, webhookSecret);
   } catch (err) {
     return response.status(400).send(`Webhook Error: ${err.message}`);
   }
@@ -68,6 +68,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
     
     console.log(`emailing customer link at ${customerEmail}`);
   }
+  else {console.log(event.type)}
 
   response.json({received: true});
 });
