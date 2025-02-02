@@ -6,8 +6,33 @@ interface productProps {
   src: string;
   partCount: number;
   signupEvent: any;
-  loading: any;
+  loading: boolean;
   price: number;
+}
+
+function buy() {
+  fetch("http://localhost:1234/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      items: [
+        { id: 1, quantity: 3 },
+        { id: 2, quantity: 1 },
+      ],
+    }),
+  })
+    .then(res => {
+      if (res.ok) return res.json()
+      return res.json().then(json => Promise.reject(json))
+    })
+    .then(({ url }) => {
+      globalThis.location = url
+    })
+    .catch(e => {
+      console.error(e.error)
+    })
 }
 
 function PartIcon() {
@@ -33,7 +58,7 @@ export function ProductCard({ title, src, partCount, signupEvent, loading, price
     title={title}
     hoverable
       loading={loading}
-      extra={<>{price == 0 ? <a onClick={signupEvent}>Get Free <DownloadOutlined/></a> : <a>Buy Now <ShoppingOutlined/></a>}</>}
+      extra={<>{price == 0 ? <a onClick={signupEvent}>Get Free <DownloadOutlined/></a> : <a onClick={buy}>Buy Now <ShoppingOutlined/></a>}</>}
       style={{ width: 300,borderColor:'lightgray',overflow:'hidden' }}
       cover={<Image src={src}></Image>}
     >

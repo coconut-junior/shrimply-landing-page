@@ -4,6 +4,8 @@
     "npm:@ant-design/colors@^7.2.0": "7.2.0",
     "npm:@ant-design/icons@^5.6.0": "5.6.0_react@18.3.1_react-dom@18.3.1__react@18.3.1",
     "npm:@eslint/js@^9.17.0": "9.19.0",
+    "npm:@stripe/react-stripe-js@^3.1.1": "3.1.1_@stripe+stripe-js@5.6.0_react@18.3.1_react-dom@18.3.1__react@18.3.1",
+    "npm:@stripe/stripe-js@^5.6.0": "5.6.0",
     "npm:@types/react-dom@^18.3.5": "18.3.5_@types+react@18.3.18",
     "npm:@types/react@^18.3.18": "18.3.18",
     "npm:@vitejs/plugin-react@^4.3.4": "4.3.4_vite@6.0.11_@babel+core@7.26.7",
@@ -11,6 +13,7 @@
     "npm:antd@^5.23.3": "5.23.3_react@18.3.1_react-dom@18.3.1__react@18.3.1_dayjs@1.11.13",
     "npm:cors@^2.8.5": "2.8.5",
     "npm:dompurify@^3.2.4": "3.2.4",
+    "npm:dotenv@^16.4.7": "16.4.7",
     "npm:eslint-plugin-react-hooks@5": "5.1.0_eslint@9.19.0",
     "npm:eslint-plugin-react-refresh@~0.4.16": "0.4.18_eslint@9.19.0",
     "npm:eslint@^9.17.0": "9.19.0",
@@ -21,6 +24,7 @@
     "npm:react-helmet@^6.1.0": "6.1.0_react@18.3.1",
     "npm:react-router-dom@^7.1.4": "7.1.4_react@18.3.1_react-dom@18.3.1__react@18.3.1",
     "npm:react@^18.3.1": "18.3.1",
+    "npm:stripe@^17.6.0": "17.6.0",
     "npm:typescript-eslint@^8.18.2": "8.22.0_eslint@9.19.0_typescript@5.6.3_@typescript-eslint+parser@8.22.0__eslint@9.19.0__typescript@5.6.3",
     "npm:typescript@~5.6.2": "5.6.3",
     "npm:vite-plugin-favicons-inject@^2.2.0": "2.2.0",
@@ -678,6 +682,18 @@
     "@sindresorhus/is@0.14.0": {
       "integrity": "sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ=="
     },
+    "@stripe/react-stripe-js@3.1.1_@stripe+stripe-js@5.6.0_react@18.3.1_react-dom@18.3.1__react@18.3.1": {
+      "integrity": "sha512-+JzYFgUivVD7koqYV7LmLlt9edDMAwKH7XhZAHFQMo7NeRC+6D2JmQGzp9tygWerzwttwFLlExGp4rAOvD6l9g==",
+      "dependencies": [
+        "@stripe/stripe-js",
+        "prop-types",
+        "react",
+        "react-dom"
+      ]
+    },
+    "@stripe/stripe-js@5.6.0": {
+      "integrity": "sha512-w8CEY73X/7tw2KKlL3iOk679V9bWseE4GzNz3zlaYxcTjmcmWOathRb0emgo/QQ3eoNzmq68+2Y2gxluAv3xGw=="
+    },
     "@szmarczak/http-timer@1.1.2": {
       "integrity": "sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==",
       "dependencies": [
@@ -1238,6 +1254,9 @@
       "dependencies": [
         "@types/trusted-types"
       ]
+    },
+    "dotenv@16.4.7": {
+      "integrity": "sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ=="
     },
     "dunder-proto@1.0.1": {
       "integrity": "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==",
@@ -2887,6 +2906,13 @@
     "strip-json-comments@3.1.1": {
       "integrity": "sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig=="
     },
+    "stripe@17.6.0": {
+      "integrity": "sha512-+HB6+SManp0gSRB0dlPmXO+io18krlAe0uimXhhIkL/RG/VIRigkfoM3QDJPkqbuSW0XsA6uzsivNCJU1ELEDA==",
+      "dependencies": [
+        "@types/node",
+        "qs"
+      ]
+    },
     "stylis@4.3.5": {
       "integrity": "sha512-K7npNOKGRYuhAFFzkzMGfxFDpN6gDwf8hcMiE+uveTVbBgm93HrNP3ZDUpKqzZ4pG7TP6fmb+EMAQPjq9FqqvA=="
     },
@@ -3068,6 +3094,8 @@
         "npm:@ant-design/colors@^7.2.0",
         "npm:@ant-design/icons@^5.6.0",
         "npm:@eslint/js@^9.17.0",
+        "npm:@stripe/react-stripe-js@^3.1.1",
+        "npm:@stripe/stripe-js@^5.6.0",
         "npm:@types/react-dom@^18.3.5",
         "npm:@types/react@^18.3.18",
         "npm:@vitejs/plugin-react@^4.3.4",
@@ -3075,6 +3103,7 @@
         "npm:antd@^5.23.3",
         "npm:cors@^2.8.5",
         "npm:dompurify@^3.2.4",
+        "npm:dotenv@^16.4.7",
         "npm:eslint-plugin-react-hooks@5",
         "npm:eslint-plugin-react-refresh@~0.4.16",
         "npm:eslint@^9.17.0",
@@ -3085,6 +3114,7 @@
         "npm:react-helmet@^6.1.0",
         "npm:react-router-dom@^7.1.4",
         "npm:react@^18.3.1",
+        "npm:stripe@^17.6.0",
         "npm:typescript-eslint@^8.18.2",
         "npm:typescript@~5.6.2",
         "npm:vite-plugin-favicons-inject@^2.2.0",
