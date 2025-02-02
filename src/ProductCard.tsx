@@ -1,7 +1,7 @@
 import { Card, Image, Flex } from 'antd';
 import { FileExclamationOutlined, DownloadOutlined, ShoppingOutlined } from '@ant-design/icons';
 import 'dotenv/config';
-import process from "node:process";
+import process from "process";
 
 interface productProps {
   title: string;
