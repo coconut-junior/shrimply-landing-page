@@ -2,7 +2,7 @@
 import express from "express";
 
 const app = express();
-const PORT = 8000;
+const PORT = 1234;
 
 // Serve static assets first
 app.use(express.static("dist")); // Serves all static files
