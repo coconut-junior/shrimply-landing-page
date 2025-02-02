@@ -1,12 +1,13 @@
 import { Card, Image, Flex } from 'antd';
-import { FileExclamationOutlined, DownloadOutlined } from '@ant-design/icons';
+import { FileExclamationOutlined, DownloadOutlined, ShoppingOutlined } from '@ant-design/icons';
 
 interface productProps {
   title: string;
   src: string;
   partCount: number;
-  clickEvent: any;
+  signupEvent: any;
   loading: any;
+  price: number;
 }
 
 function PartIcon() {
@@ -22,27 +23,29 @@ function PartIcon() {
   );
 }
 
-export function ProductCard({ title, src, partCount, clickEvent, loading }: productProps) {
+function currencyFormat(num:number) {
+  return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+export function ProductCard({ title, src, partCount, signupEvent, loading, price }: productProps) {
   return (
     <Card
-      title={title}
+    title={title}
+    hoverable
       loading={loading}
-      actions={[
-        <a onClick={clickEvent}>
-          Get Instructions <DownloadOutlined/>
-        </a>,
-      ]}
+      extra={<>{price == 0 ? <a onClick={signupEvent}>Get Free <DownloadOutlined/></a> : <a>Buy Now <ShoppingOutlined/></a>}</>}
       style={{ width: 300,borderColor:'lightgray',overflow:'hidden' }}
       cover={<Image src={src}></Image>}
     >
-      <Flex gap="10px" justify="center">
-        <Flex gap="5px">
-          <PartIcon /> {partCount} Parts
+      <Flex gap="10px" justify="center" style={{padding:'5px'}}>
+          <Flex gap="5px">
+            <PartIcon /> {partCount} Parts
+          </Flex>
+          <Flex gap="5px">
+            <FileExclamationOutlined /> Instructions only
+          </Flex>
         </Flex>
-        <Flex gap="5px">
-          <FileExclamationOutlined /> Instructions only
-        </Flex>
-      </Flex>
+        <p style = {{fontWeight:'bold',margin:0,padding:0}}>{currencyFormat(price)}</p>
     </Card>
   );
 }

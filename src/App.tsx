@@ -20,9 +20,8 @@ import { Popup } from './Popup';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  type MenuItem = Required<MenuProps>['items'][number];
-
   const [loading, setLoading] = useState(true);
+  type MenuItem = Required<MenuProps>['items'][number];
 
   useEffect(() => {
     // Simulate data fetching
@@ -40,9 +39,9 @@ function App() {
   };
 
   const navItems: MenuItem[] = [
-    { key: '1',disabled:true, icon:<img src = "./shrimp-icon.png" height={48}></img> },
-    // { key: '2', label:  <a href = "mailto:contact@jbx.design">Contact</a> },
-    // { key: '3', label: 'Option 3' }
+    { key: '1',disabled:true, icon:<img onClick={()=>{alert('Do not the shrimp!!')}} src = "./shrimp-icon.png" height={48}></img> },
+    { key: '2', label:  <a href="#about">About</a> },
+    { key: '3', label: <a href="#faq">FAQ</a> }
   ];
 
   const faqItems: CollapseProps['items'] = [
@@ -59,10 +58,11 @@ function App() {
               <a target="_blank" href="https://www.bricklink.com/v2/main.page">
                 BrickLink
               </a>{' '}
-              or{' '}
+              ,{' '}
               <a target="_blank" href="https://www.brickowl.com/">
                 Brick Owl
               </a>
+              {' '}or <a target="_blank" href = "https://www.toypro.com/">ToyPro</a>
             </li>
             <li>
               Buy common parts from LEGO's Pick a Brick service
@@ -95,7 +95,7 @@ function App() {
     },
     {
       key: '4',
-      label: 'LEGO pieces cost too much!',
+      label: 'LEGO pieces cost too much! What can I do?',
       children: (
         <p>
           If you're not willing to pay full price for genuine LEGO parts, we
@@ -153,7 +153,7 @@ function App() {
               </h1>
               <p>
                 Ever wanted to build something cool that wasn't an official LEGO
-                set? Shrimply Bricks makes it easy. We've got custom building
+                set? Prismaprawn Digital makes it easy. We've got custom building
                 instructions for a whole variety of themes that you can choose
                 from. These unique builds can't be found anywhere else!
               </p>
@@ -173,9 +173,9 @@ function App() {
                   Get Free Instructions
                   <ArrowRightOutlined></ArrowRightOutlined>
                 </Button>
-                <a href="#faq">
+                <a href="#products">
                   <Button size="large" style={{ padding: '24px' }}>
-                    Learn More
+                    Browse All
                   </Button>
                 </a>
               </Flex>
@@ -190,32 +190,47 @@ function App() {
           {/* product list */}
 
           <Flex vertical={true} style={{ padding: '20px' }}>
-            <h2>Most Popular Builds</h2>
+            <h2 id = "products">Most Popular Builds</h2>
             <Flex justify="center" gap="10px" wrap={true}>
+            <ProductCard
+                title="Vending Machine"
+                src="vending_machine_1000x800.png"
+                partCount={96}
+                signupEvent={showModal}
+                loading={loading}
+                price={0}
+              ></ProductCard>
+
               <ProductCard
                 title="Floating Tiki Bar"
                 src="tiki_bar_1000x800.png"
                 partCount={268}
-                clickEvent={showModal}
+                signupEvent={showModal}
                 loading={loading}
-              ></ProductCard>
-
-              <ProductCard
-                title="Vending Machine"
-                src="vending_machine_1000x800.png"
-                partCount={96}
-                clickEvent={showModal}
-                loading={loading}
+                price={5.00}
               ></ProductCard>
 
               <ProductCard
                 title="Garden Fountain"
                 src="garden_fountain.png"
                 partCount={180}
-                clickEvent={showModal}
+                signupEvent={showModal}
                 loading={loading}
+                price={4}
               ></ProductCard>
             </Flex>
+          </Flex>
+
+          <Flex vertical={true} style={{ padding: '20px' }}>
+            <h2 id="about">About</h2>
+            <p>Founded by lifelong LEGO enthusiasts, Prismaprawn Digital began as a passion project in 2024 when we noticed a gap in the market for original, high-quality LEGO MOC (My Own Creation) instructions. Frustrated by the lack of unique designs that challenged traditional building techniques, we set out to craft instructions that inspire creativity and redefine what’s possible with LEGO bricks.</p>
+              
+            <h3>What Makes Us Unique</h3>
+            <ul>
+              <li>100% Original Designs: Unlike platforms that resell third-party instructions, every MOC is conceptualized, tested, and refined by our in-house team.</li>
+              <li>Quality Assurance: Each instruction undergoes rigorous testing for clarity, stability, and fun factor—ensuring a rewarding building experience.</li>
+             
+            </ul>
           </Flex>
 
           <Flex vertical={true} style={{ padding: '20px' }}>
@@ -229,7 +244,7 @@ function App() {
 
         <Footer >
           <p>
-            Copyright © 2025 Momonga Software LLC
+            Copyright © 2025 Prismaprawn Digital LLC
             <br></br>
             Disclaimer: LEGO is a trademark of the LEGO Group of companies
             (https://www.lego.com) which does not sponsor, authorize or endorse

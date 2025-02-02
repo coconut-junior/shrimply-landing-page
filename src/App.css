@@ -33,6 +33,14 @@ h2 {
   font-size: 2em;
 }
 
+h3 {
+  font-size: 1.5em;
+}
+
+ul {
+  font-size:18px;
+}
+
 p {
   line-height: 150%;
   font-size: 18px;
