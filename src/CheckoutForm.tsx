@@ -1,16 +1,16 @@
-//@ts-nocheck
 "use client";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { Modal } from "antd";
 import { ShoppingOutlined } from '@ant-design/icons';
 
 const productIds = {'Floating Tiki Bar': 1, 'Garden Fountain': 2}
 
+//@ts-ignore
 export default function EmbeddedCheckoutButton({name}) {
   const stripePromise = loadStripe(
     "pk_test_51Qnmq2RSQY7LvNOekG649ZFpCrvgCv0ObLp9NTuWlvNxyyrIpKX9Jr8rE5MMOHmlMjTwb1YCCAyNjJu5in5UjQIr008Ajy07UU"
@@ -35,6 +35,7 @@ export default function EmbeddedCheckoutButton({name}) {
         },
         body: JSON.stringify({
           items: [
+            //@ts-ignore
             { id: productIds[name], quantity: 1 },
           ],
         }),
@@ -57,7 +58,7 @@ export default function EmbeddedCheckoutButton({name}) {
         destroyOnClose={true}>
          {isModalOpen && (
             <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-            <EmbeddedCheckout width="100%" />
+                <EmbeddedCheckout/>
             </EmbeddedCheckoutProvider>
         )}
       </Modal>

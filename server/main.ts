@@ -1,4 +1,3 @@
-// @ts-nocheck
 import express from "express";
 import Stripe from 'stripe';
 import 'dotenv/config';
@@ -11,8 +10,8 @@ console.log(`key is ${process.env.STRIPE_PRIVATE_KEY}`);
 app.use(express.static("dist")); // Serves all static files
 
 const storeItems = new Map([
-  [1, { priceInCents: 10000, name: "Floating Tiki Bar" }],
-  [2, { priceInCents: 500, name: "Garden Fountain" }],
+  [1, { priceInCents: 500, name: "Floating Tiki Bar" }],
+  [2, { priceInCents: 400, name: "Garden Fountain" }],
 ])
 
 app.use(express.json());
@@ -44,13 +43,35 @@ app.post("/api/embedded-checkout", async (req, res) => {
       return_url: `${process.env.CLIENT_URL}`,
     });
 
-    console.log(`client secret is ${session.client_secret}`)
     res.json({ id: session.id, client_secret: session.client_secret })
   } catch (e) {
     console.log(e)
     res.status(500).json({ error: e.message })
   }
 })
+
+const webhookSecret = process.env.WEBHOOK_SECRET as string;
+
+app.post('/webhook', express.raw({type: 'application/json'}), async (request, response) => {
+  const sig = request.headers['stripe-signature'];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(request.body, sig, webhookSecret);
+  } catch (err) {
+    return response.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const customerEmail = session.customer_email;
+    
+    console.log(`emailing customer link at ${customerEmail}`);
+  }
+
+  response.json({received: true});
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
