@@ -1,5 +1,7 @@
+//@ts-nocheck
 import { Card, Image, Flex } from 'antd';
 import { FileExclamationOutlined, DownloadOutlined, ShoppingOutlined } from '@ant-design/icons';
+import CheckoutForm from "./CheckoutForm.tsx";
 
 interface productProps {
   title: string;
@@ -10,8 +12,10 @@ interface productProps {
   price: number;
 }
 
-function buy() {
-  const domain = globalThis.location.origin;
+const productIds = {'Floating Tiki Bar': 1, 'Garden Fountain': 2}
+
+function buy(name:string) {
+  const domain = window.location.origin;
   fetch(`${domain}/create-checkout-session`, {
     method: "POST",
     headers: {
@@ -19,8 +23,7 @@ function buy() {
     },
     body: JSON.stringify({
       items: [
-        { id: 1, quantity: 3 },
-        { id: 2, quantity: 1 },
+        { id: productIds[name], quantity: 1 },
       ],
     }),
   })
@@ -29,7 +32,7 @@ function buy() {
       return res.json().then(json => Promise.reject(json))
     })
     .then(({ url }) => {
-      globalThis.location = url
+      window.location = url
     })
     .catch(e => {
       console.error(e.error)
@@ -59,7 +62,7 @@ export function ProductCard({ title, src, partCount, signupEvent, loading, price
     title={title}
     hoverable
       loading={loading}
-      extra={<>{price == 0 ? <a onClick={signupEvent}>Get Free <DownloadOutlined/></a> : <a onClick={buy}>Buy Now <ShoppingOutlined/></a>}</>}
+      extra={<>{price == 0 ? <a onClick={signupEvent}>Get Free <DownloadOutlined/></a> : <a><CheckoutForm name={title}></CheckoutForm></a>}</>}
       style={{ width: 300,borderColor:'lightgray',overflow:'hidden' }}
       cover={<Image src={src}></Image>}
     >

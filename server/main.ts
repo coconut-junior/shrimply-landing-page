@@ -1,4 +1,3 @@
-// deno-lint-ignore-file
 // @ts-nocheck
 import express from "express";
 import Stripe from 'stripe';
@@ -9,25 +8,21 @@ const PORT = 1234;
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 console.log(`key is ${process.env.STRIPE_PRIVATE_KEY}`);
 
-// Serve static assets first
 app.use(express.static("dist")); // Serves all static files
 
 const storeItems = new Map([
-  [1, { priceInCents: 10000, name: "Learn React Today" }],
-  [2, { priceInCents: 20000, name: "Learn CSS Today" }],
+  [1, { priceInCents: 10000, name: "Floating Tiki Bar" }],
+  [2, { priceInCents: 500, name: "Garden Fountain" }],
 ])
 
 app.use(express.json());
 
 // API route
-app.post("/create-checkout-session", async (req, res) => {
+app.post("/api/embedded-checkout", async (req, res) => {
   console.log('received checkout request');
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
-      line_items: req.body.items.map(item => {
-        const storeItem = storeItems.get(item.id)
+  
+  const line_items = req.body.items.map(item => {
+    const storeItem = storeItems.get(item.id)
         return {
           price_data: {
             currency: "usd",
@@ -38,13 +33,21 @@ app.post("/create-checkout-session", async (req, res) => {
           },
           quantity: item.quantity,
         }
-      }),
-      success_url: `https://google.com`,
-      cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
-    })
-    console.log(res);
-    res.json({ url: session.url })
+  });
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: "embedded",
+      payment_method_types: ["card"],
+      line_items: line_items,
+      mode: "payment",
+      return_url: `${process.env.CLIENT_URL}`,
+    });
+
+    console.log(`client secret is ${session.client_secret}`)
+    res.json({ id: session.id, client_secret: session.client_secret })
   } catch (e) {
+    console.log(e)
     res.status(500).json({ error: e.message })
   }
 })
