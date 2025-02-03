@@ -14,6 +14,30 @@ const storeItems = new Map([
   [2, { priceInCents: 400, name: "Garden Fountain" }],
 ])
 
+const webhookSecret = process.env.WEBHOOK_SECRET as string;
+
+app.post('/webhook', express.raw({type: 'application/json'}), async (request, response) => {
+  const sig = request.headers['stripe-signature'];
+  let event;
+
+  try {
+    event = await stripe.webhooks.constructEventAsync(request.body, sig, webhookSecret);
+  } catch (err) {
+    console.log(err.message)
+    return response.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const customerEmail = session.customer_details.email;
+    
+    console.log(`emailing customer link at ${customerEmail}`);
+  }
+  else {}
+
+  response.json({received: true});
+});
+
 app.use(express.json());
 
 // API route
@@ -50,28 +74,7 @@ app.post("/api/embedded-checkout", async (req, res) => {
   }
 })
 
-const webhookSecret = process.env.WEBHOOK_SECRET as string;
 
-app.post('/webhook', express.raw({type: 'application/json'}), async (request, response) => {
-  const sig = request.headers['stripe-signature'];
-  let event;
-
-  try {
-    event = await stripe.webhooks.constructEventAsync(request.body, sig, webhookSecret);
-  } catch (err) {
-    return response.status(400).send(`Webhook Error: ${err.message}`);
-  }
-
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
-    const customerEmail = session.customer_email;
-    
-    console.log(`emailing customer link at ${customerEmail}`);
-  }
-  else {console.log(event.type)}
-
-  response.json({received: true});
-});
 
 
 app.listen(PORT, () => {
