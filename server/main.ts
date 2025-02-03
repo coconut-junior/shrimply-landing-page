@@ -14,6 +14,10 @@ const storeItems = new Map([
   [2, { priceInCents: 400, name: "Garden Fountain" }],
 ])
 
+const downloadLinks = {
+  "Floating Tiki Bar": "google.com"
+}
+
 const webhookSecret = process.env.WEBHOOK_SECRET as string;
 
 app.post('/webhook', express.raw({type: 'application/json'}), async (request, response) => {
@@ -30,8 +34,13 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     const customerEmail = session.customer_details.email;
-    
-    console.log(`emailing customer link at ${customerEmail}`);
+    const customerName = session.customer_details.name;
+    const line_items = await stripe.checkout.sessions.listLineItems(session.id);
+
+    const product = line_items.data[0].description?.toString();
+    const link = downloadLinks[product];
+    console.log(line_items);
+    console.log(`emailing ${customerName} link at ${customerEmail}. they purchased ${product} which can be downloaded at ${link}`);
   }
   else {}
 
