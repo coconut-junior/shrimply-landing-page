@@ -95,12 +95,23 @@ app.post('/api/embedded-checkout', async (req, res) => {
   }
 });
 
-app.post('/api/products', async (req, res) => {
+app.get('/api/products', async (req, res) => {
   try {
     const products = await stripe.products.list({
       limit: 100,
     });
     res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.get('/api/prices', async (req, res) => {
+  try {
+    const prices = await stripe.prices.list({
+      limit: 100,
+    });
+    res.status(200).json(prices);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -21,22 +21,34 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [prices, setPrices] = useState({});
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch('/api/products');
+      const response = await fetch(`/api/products`, {
+        method: 'GET',
+      });
       const data = await response.json();
       setProducts(data);
+
+      const fetchPrices = await fetch(`/api/prices`, {
+        method: 'GET',
+      });
+      const prices = await fetchPrices.json();
+      let priceDict = {};
+
+      for (let i = 0; i < prices.data.length; ++i) {
+        let priceInfo = prices.data[i];
+        //@ts-expect-error
+        priceDict[priceInfo.id] = priceInfo.unit_amount;
+      }
+      console.log(data);
+      console.log(priceDict);
+      setPrices(priceDict);
+      setLoading(false);
     };
 
     fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    // Simulate data fetching
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
   }, []);
 
   const showModal = () => {
@@ -48,23 +60,26 @@ function App() {
   };
 
   const ProductList = () => {
-    return (
-      <Flex id="productList" justify="center" gap="10px" wrap={true}>
-        {
-          //@ts-expect-error
-          products.data.map((product) => (
-            <ProductCard
-              title={product.name}
-              src={product.images[0]}
-              partCount={0}
-              signupEvent={showModal}
-              loading={loading}
-              price={0}
-            ></ProductCard>
-          ))
-        }
-      </Flex>
-    );
+    //@ts-expect-error
+    if (products.data && prices != {})
+      return (
+        <Flex id="productList" justify="center" gap="10px" wrap={true}>
+          {
+            //@ts-expect-error
+            products.data.map((product) => (
+              <ProductCard
+                title={product.name}
+                src={product.images[0] ?? ''}
+                partCount={0}
+                signupEvent={showModal}
+                loading={loading}
+                //@ts-expect-error
+                price={prices[product.default_price] ?? 0}
+              ></ProductCard>
+            ))
+          }
+        </Flex>
+      );
   };
 
   return (
@@ -155,36 +170,7 @@ function App() {
 
           <Flex vertical={true} style={{ padding: '20px' }}>
             <h2 id="products">Most Popular Builds</h2>
-
-            {
-              <ProductList></ProductList>
-              /* <ProductCard
-                title="Vending Machine"
-                src="vending_machine_1000x800.png"
-                partCount={96}
-                signupEvent={showModal}
-                loading={loading}
-                price={0}
-              ></ProductCard>
-
-              <ProductCard
-                title="Floating Tiki Bar"
-                src="tiki_bar_1000x800.png"
-                partCount={268}
-                signupEvent={showModal}
-                loading={loading}
-                price={5.0}
-              ></ProductCard>
-
-              <ProductCard
-                title="Garden Fountain"
-                src="garden_fountain.png"
-                partCount={180}
-                signupEvent={showModal}
-                loading={loading}
-                price={4}
-              ></ProductCard> */
-            }
+            {<ProductList></ProductList>}
           </Flex>
 
           <Flex vertical={true} style={{ padding: '20px' }}>

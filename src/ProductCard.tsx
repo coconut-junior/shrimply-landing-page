@@ -1,7 +1,11 @@
 //@ts-nocheck
 import { Card, Image, Flex } from 'antd';
-import { FileExclamationOutlined, DownloadOutlined, ShoppingOutlined } from '@ant-design/icons';
-import CheckoutForm from "./CheckoutForm.tsx";
+import {
+  FileExclamationOutlined,
+  DownloadOutlined,
+  ShoppingOutlined,
+} from '@ant-design/icons';
+import CheckoutForm from './CheckoutForm.tsx';
 
 interface productProps {
   title: string;
@@ -12,31 +16,29 @@ interface productProps {
   price: number;
 }
 
-const productIds = {'Floating Tiki Bar': 1, 'Garden Fountain': 2}
+const productIds = { 'Floating Tiki Bar': 1, 'Garden Fountain': 2 };
 
-function buy(name:string) {
+function buy(name: string) {
   const domain = window.location.origin;
   fetch(`${domain}/create-checkout-session`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      items: [
-        { id: productIds[name], quantity: 1 },
-      ],
+      items: [{ id: productIds[name], quantity: 1 }],
     }),
   })
-    .then(res => {
-      if (res.ok) return res.json()
-      return res.json().then(json => Promise.reject(json))
+    .then((res) => {
+      if (res.ok) return res.json();
+      return res.json().then((json) => Promise.reject(json));
     })
     .then(({ url }) => {
-      window.location = url
+      window.location = url;
     })
-    .catch(e => {
-      console.error(e.error)
-    })
+    .catch((e) => {
+      console.error(e.error);
+    });
 }
 
 function PartIcon() {
@@ -52,29 +54,50 @@ function PartIcon() {
   );
 }
 
-function currencyFormat(num:number) {
-  return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+function currencyFormat(num: number) {
+  return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 
-export function ProductCard({ title, src, partCount, signupEvent, loading, price }: productProps) {
+export function ProductCard({
+  title,
+  src,
+  partCount,
+  signupEvent,
+  loading,
+  price,
+}: productProps) {
   return (
     <Card
-    title={title}
-    hoverable
+      hoverable
       loading={loading}
-      extra={<>{price == 0 ? <a onClick={signupEvent}>Get Free <DownloadOutlined/></a> : <a><CheckoutForm name={title}></CheckoutForm></a>}</>}
-      style={{ width: 300,borderColor:'lightgray',overflow:'hidden' }}
+      extra={
+        <>
+          {price == 0 ? (
+            <a onClick={signupEvent}>
+              Get Free <DownloadOutlined />
+            </a>
+          ) : (
+            <a>
+              <CheckoutForm name={title}></CheckoutForm>
+            </a>
+          )}
+        </>
+      }
+      style={{ width: 300, borderColor: 'lightgray', overflow: 'hidden' }}
       cover={<Image src={src}></Image>}
     >
-      <Flex gap="10px" justify="center" style={{padding:'5px'}}>
-          <Flex gap="5px">
-            <PartIcon /> {partCount} Parts
-          </Flex>
-          <Flex gap="5px">
-            <FileExclamationOutlined /> Instructions only
-          </Flex>
+      <Card.Meta title={title}></Card.Meta>
+      <Flex gap="10px" justify="center" style={{ padding: '5px' }}>
+        <Flex gap="5px">
+          <PartIcon /> {partCount} Parts
         </Flex>
-        <p style = {{fontWeight:'bold',margin:0,padding:0}}>{currencyFormat(price)}</p>
+        <Flex gap="5px">
+          <FileExclamationOutlined /> Instructions only
+        </Flex>
+      </Flex>
+      <p style={{ fontWeight: 'bold', margin: 0, padding: 0 }}>
+        {currencyFormat(price / 100)}
+      </p>
     </Card>
   );
 }

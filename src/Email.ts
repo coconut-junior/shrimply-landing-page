@@ -1,4 +1,5 @@
-import nodemailer from 'npm:nodemailer'; //might need different module as this requires using npm
+//@ts-expect-error
+import nodemailer from 'npm:nodemailer';
 import 'dotenv/config';
 
 //MUST SET DENO_TLS_CA_STORE=system for this to work!!
