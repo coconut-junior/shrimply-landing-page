@@ -15,11 +15,22 @@ import { magenta } from '@ant-design/colors';
 import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
 import { Popup } from './Popup.tsx';
-import {faqItems, navItems} from './Navigation.tsx';
+import { faqItems, navItems } from './Navigation.tsx';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch('/api/products');
+      const data = await response.json();
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     // Simulate data fetching
@@ -31,9 +42,29 @@ function App() {
   const showModal = () => {
     setIsModalOpen(true);
   };
-  
+
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const ProductList = () => {
+    return (
+      <Flex id="productList" justify="center" gap="10px" wrap={true}>
+        {
+          //@ts-expect-error
+          products.data.map((product) => (
+            <ProductCard
+              title={product.name}
+              src={product.images[0]}
+              partCount={0}
+              signupEvent={showModal}
+              loading={loading}
+              price={0}
+            ></ProductCard>
+          ))
+        }
+      </Flex>
+    );
   };
 
   return (
@@ -46,11 +77,20 @@ function App() {
       }}
     >
       <Layout>
-        <Menu mode = "horizontal" items = {navItems} style = {{justifyContent:'center',border:'none',padding:'10px',paddingTop:'20px'}}></Menu>
-        <Content id = 'wrapper'>
+        <Menu
+          mode="horizontal"
+          items={navItems}
+          style={{
+            justifyContent: 'center',
+            border: 'none',
+            padding: '10px',
+            paddingTop: '20px',
+          }}
+        ></Menu>
+        <Content id="wrapper">
           {/* hero */}
           <Flex
-            id = "hero"
+            id="hero"
             wrap={true}
             gap="40px"
             justify="center"
@@ -76,9 +116,9 @@ function App() {
               </h1>
               <p>
                 Ever wanted to build something cool that wasn't an official LEGO
-                set? Prismaprawn Digital makes it easy. We've got custom building
-                instructions for a whole variety of themes that you can choose
-                from. These unique builds can't be found anywhere else!
+                set? Prismaprawn Digital makes it easy. We've got custom
+                building instructions for a whole variety of themes that you can
+                choose from. These unique builds can't be found anywhere else!
               </p>
               <Flex
                 justify="left"
@@ -103,19 +143,22 @@ function App() {
                 </a>
               </Flex>
             </Flex>
-            <Image id = "hero-image"
+            <Image
+              id="hero-image"
               preview={false}
               style={{ position: 'relative', top: '100px' }}
-              src='./bubba_don.png'
+              src="./bubba_don.png"
             ></Image>
           </Flex>
 
           {/* product list */}
 
           <Flex vertical={true} style={{ padding: '20px' }}>
-            <h2 id = "products">Most Popular Builds</h2>
-            <Flex justify="center" gap="10px" wrap={true}>
-            <ProductCard
+            <h2 id="products">Most Popular Builds</h2>
+
+            {
+              <ProductList></ProductList>
+              /* <ProductCard
                 title="Vending Machine"
                 src="vending_machine_1000x800.png"
                 partCount={96}
@@ -130,7 +173,7 @@ function App() {
                 partCount={268}
                 signupEvent={showModal}
                 loading={loading}
-                price={5.00}
+                price={5.0}
               ></ProductCard>
 
               <ProductCard
@@ -140,20 +183,34 @@ function App() {
                 signupEvent={showModal}
                 loading={loading}
                 price={4}
-              ></ProductCard>
-
-            </Flex>
+              ></ProductCard> */
+            }
           </Flex>
 
           <Flex vertical={true} style={{ padding: '20px' }}>
             <h2 id="about">About</h2>
-            <p>Founded by lifelong LEGO enthusiasts, Prismaprawn Digital began as a passion project in 2024 when we noticed a gap in the market for original, high-quality LEGO MOC (My Own Creation) instructions. Frustrated by the lack of unique designs that challenged traditional building techniques, we set out to craft instructions that inspire creativity and redefine what’s possible with LEGO bricks.</p>
-              
+            <p>
+              Founded by lifelong LEGO enthusiasts, Prismaprawn Digital began as
+              a passion project in 2024 when we noticed a gap in the market for
+              original, high-quality LEGO MOC (My Own Creation) instructions.
+              Frustrated by the lack of unique designs that challenged
+              traditional building techniques, we set out to craft instructions
+              that inspire creativity and redefine what’s possible with LEGO
+              bricks.
+            </p>
+
             <h3>What Makes Us Unique</h3>
             <ul>
-              <li>100% Original Designs: Unlike platforms that resell third-party instructions, every MOC is conceptualized, tested, and refined by our in-house team.</li>
-              <li>Quality Assurance: Each instruction undergoes rigorous testing for clarity, stability, and fun factor—ensuring a rewarding building experience.</li>
-             
+              <li>
+                100% Original Designs: Unlike platforms that resell third-party
+                instructions, every MOC is conceptualized, tested, and refined
+                by our in-house team.
+              </li>
+              <li>
+                Quality Assurance: Each instruction undergoes rigorous testing
+                for clarity, stability, and fun factor—ensuring a rewarding
+                building experience.
+              </li>
             </ul>
           </Flex>
 
@@ -166,7 +223,7 @@ function App() {
           <br></br>
         </Content>
 
-        <Footer >
+        <Footer>
           <p>
             Copyright © 2025 Prismaprawn Digital LLC
             <br></br>
