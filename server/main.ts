@@ -43,8 +43,9 @@ app.post(
 
       const lineItem = line_items.data[0];
       const name = lineItem.description;
-      const id = lineItem.id;
-      const product = await stripe.products.retrieve(id);
+      const price = lineItem.price;
+      const productId = price?.product;
+      const product = await stripe.products.retrieve(productId);
 
       const link = downloadLinks[product.metadata.url];
       console.log(line_items);
