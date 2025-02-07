@@ -19,8 +19,10 @@ async function sendEmail(
   address: string,
   customerName: string,
   link: string,
-  lineItem: any
+  lineItem: any,
+  productImage: string
 ) {
+  const headerImage = 'https://prismaprawn.com/';
   const html = `<!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
@@ -138,7 +140,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div style="max-width: 68px;"><a href="${link}" target="_blank" style="outline:none" tabindex="-1"><img src="https://99e4151afd.imgdist.com/pub/bfra/y4meflqt/n3j/g79/qaw/shrimp-icon.png" style="display: block; height: auto; border: 0; width: 100%;" width="68" alt="Mama's bakery Logo" title="Mama's bakery Logo" height="auto"></a></div>
+																	<div style="max-width: 68px;"><a href="https://prismaprawn.com" target="_blank" style="outline:none" tabindex="-1"><img src="https://99e4151afd.imgdist.com/pub/bfra/y4meflqt/n3j/g79/qaw/shrimp-icon.png" style="display: block; height: auto; border: 0; width: 100%;" width="68" alt="Prismaprawn Logo" title="Prismaprawn Logo" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -148,7 +150,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div class="fullWidth" style="max-width: 306px;"><a href="www.example.com" target="_blank" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1956/Mama_Bakery.png" style="display: block; height: auto; border: 0; width: 100%;" width="306" alt="Lady Baking" title="Lady Baking" height="auto"></a></div>
+																	<div class="fullWidth" style="max-width: 306px;"><a href="${link}" target="_blank" style="outline:none" tabindex="-1"><img src="${headerImage}" style="display: block; height: auto; border: 0; width: 100%;" width="306" alt="Lady Baking" title="Lady Baking" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -210,7 +212,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div class="fullWidth" style="max-width: 120px;"><a href="www.example.com" target="_blank" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1956/Blueberry_Coffee_Donut.png" style="display: block; height: auto; border: 0; width: 100%;" width="120" alt="Blueberry Coffee Donut" title="Blueberry Coffee Donut" height="auto"></a></div>
+																	<div class="fullWidth" style="max-width: 120px;"><a href="${link}" target="_blank" style="outline:none" tabindex="-1"><img src="${productImage}" style="display: block; height: auto; border: 0; width: 100%;" width="120" alt="Blueberry Coffee Donut" title="Blueberry Coffee Donut" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -222,7 +224,9 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;">
 																<div style="color:#232323;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:17px;line-height:120%;text-align:left;mso-line-height-alt:20.4px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;">${lineItem.description}</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;">${
+                                    lineItem.description
+                                  }</span></p>
 																</div>
 															</td>
 														</tr>
@@ -243,7 +247,9 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;">
 																<div style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;line-height:120%;text-align:left;mso-line-height-alt:16.8px;">
-																	<p style="margin: 0; word-break: break-word;">${lineItem.price}</p>
+																	<p style="margin: 0; word-break: break-word;">$${
+                                    lineItem.price.unit_amount / 100
+                                  }</p>
 																</div>
 															</td>
 														</tr>
@@ -337,8 +343,8 @@ async function sendEmail(
 													<table class="button_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;text-align:center;">
-																<div class="alignment" align="center"><a href="http://www.example.com" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="http://www.example.com"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="#e17370">
+																<div class="alignment" align="center"><a href="${link}" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="${link}"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="#e17370">
 <v:stroke dashstyle="Solid" weight="1px" color="#E17370"/>
 <w:anchorlock/>
 <v:textbox inset="0px,0px,0px,0px">
@@ -453,7 +459,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:20px;padding-left:25px;padding-right:10px;padding-top:10px;">
 																<div style="color:#C0C0C0;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:12px;line-height:180%;text-align:left;mso-line-height-alt:21.6px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #c0c0c0;"><a style="text-decoration: none; color: #C0C0C0;" href="http://www.example.com" target="_blank" rel="noopener">www.company.com</a></span><span style="word-break: break-word; color: #c0c0c0;">Company address here<br>+1 123 123 123</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #c0c0c0;"><a style="text-decoration: none; color: #C0C0C0;" href="${link}" target="_blank" rel="noopener">www.company.com</a></span><span style="word-break: break-word; color: #c0c0c0;">Company address here<br>+1 123 123 123</span></p>
 																</div>
 															</td>
 														</tr>
@@ -462,7 +468,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:10px;padding-top:10px;">
 																<div style="color:#C0C0C0;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:12px;line-height:120%;text-align:left;mso-line-height-alt:14.399999999999999px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #C0C0C0;">Changed your mind? <a style="text-decoration: none; color: #ffffff;" href="http://www.example.com" target="_blank" rel="noopener">Unsubscribe</a> </span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #C0C0C0;">Changed your mind? <a style="text-decoration: none; color: #ffffff;" href="${link}" target="_blank" rel="noopener">Unsubscribe</a> </span></p>
 																</div>
 															</td>
 														</tr>

@@ -10,10 +10,6 @@ console.log(`key is ${process.env.STRIPE_PRIVATE_KEY}`);
 
 app.use(express.static('dist')); // Serves all static files
 
-const downloadLinks = {
-  'Floating Tiki Bar': 'google.com',
-};
-
 const webhookSecret = process.env.WEBHOOK_SECRET as string;
 
 app.post(
@@ -44,9 +40,10 @@ app.post(
         const productId = price?.product;
         const product = await stripe.products.retrieve(productId);
         const link = product.metadata.url;
+        const productImage = product.images[0];
 
         console.log(`emailing ${customerName}`);
-        sendEmail(customerEmail, customerName, link, lineItem);
+        sendEmail(customerEmail, customerName, link, lineItem, productImage);
       }
     } catch (err) {
       console.log(err.message);
