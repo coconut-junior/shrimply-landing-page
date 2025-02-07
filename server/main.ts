@@ -28,31 +28,32 @@ app.post(
         sig,
         webhookSecret
       );
+
+      if (event.type === 'checkout.session.completed') {
+        const session = event.data.object;
+        const customerEmail = session.customer_details.email;
+        const customerName = session.customer_details.name;
+        const line_items = await stripe.checkout.sessions.listLineItems(
+          session.id
+        );
+
+        const lineItem = line_items.data[0];
+        const name = lineItem.description;
+        const price = lineItem.price;
+        const productId = price?.product;
+
+        console.log(`product id is ${productId}`);
+        const product = await stripe.products.retrieve(productId);
+
+        const link = downloadLinks[product.metadata.url];
+        console.log(line_items);
+        console.log(
+          `emailing ${customerName} link at ${customerEmail}. they purchased ${name} which can be downloaded at ${link}`
+        );
+      }
     } catch (err) {
       console.log(err.message);
       return response.status(400).send(`Webhook Error: ${err.message}`);
-    }
-
-    if (event.type === 'checkout.session.completed') {
-      const session = event.data.object;
-      const customerEmail = session.customer_details.email;
-      const customerName = session.customer_details.name;
-      const line_items = await stripe.checkout.sessions.listLineItems(
-        session.id
-      );
-
-      const lineItem = line_items.data[0];
-      const name = lineItem.description;
-      const price = lineItem.price;
-      const productId = price?.product;
-      const product = await stripe.products.retrieve(productId);
-
-      const link = downloadLinks[product.metadata.url];
-      console.log(line_items);
-      console.log(
-        `emailing ${customerName} link at ${customerEmail}. they purchased ${name} which can be downloaded at ${link}`
-      );
-    } else {
     }
 
     response.json({ received: true });
