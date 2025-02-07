@@ -1,6 +1,7 @@
 import express from 'express';
 import Stripe from 'stripe';
 import 'dotenv/config';
+import { sendEmail } from './Email';
 
 const app = express();
 const PORT = 1234;
@@ -44,9 +45,8 @@ app.post(
         const product = await stripe.products.retrieve(productId);
         const link = product.metadata.url;
 
-        console.log(
-          `emailing ${customerName} link at ${customerEmail}. they purchased ${name} which can be downloaded at ${link}`
-        );
+        console.log(`emailing ${customerName}`);
+        sendEmail(customerEmail, customerName, link, lineItem);
       }
     } catch (err) {
       console.log(err.message);
