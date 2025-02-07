@@ -7,15 +7,6 @@ import {
 } from '@ant-design/icons';
 import CheckoutForm from './CheckoutForm.tsx';
 
-interface productProps {
-  title: string;
-  src: string;
-  partCount: number;
-  signupEvent: any;
-  loading: boolean;
-  price: number;
-}
-
 function buy(id: string) {
   const domain = window.location.origin;
   fetch(`${domain}/create-checkout-session`, {

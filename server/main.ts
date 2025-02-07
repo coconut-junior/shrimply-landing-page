@@ -4,7 +4,7 @@ import 'dotenv/config';
 
 const app = express();
 const PORT = 1234;
-const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
+const stripe = new Stripe(`${process.env.STRIPE_PRIVATE_KEY}`);
 console.log(`key is ${process.env.STRIPE_PRIVATE_KEY}`);
 
 app.use(express.static('dist')); // Serves all static files
@@ -41,11 +41,15 @@ app.post(
         session.id
       );
 
-      const product = line_items.data[0].description?.toString();
-      const link = downloadLinks[product];
+      const lineItem = line_items.data[0];
+      const name = lineItem.description;
+      const id = lineItem.id;
+      const product = await stripe.products.retrieve(id);
+
+      const link = downloadLinks[product.metadata.url];
       console.log(line_items);
       console.log(
-        `emailing ${customerName} link at ${customerEmail}. they purchased ${product} which can be downloaded at ${link}`
+        `emailing ${customerName} link at ${customerEmail}. they purchased ${name} which can be downloaded at ${link}`
       );
     } else {
     }
@@ -64,6 +68,7 @@ app.post('/api/embedded-checkout', async (req, res) => {
   const product = await stripe.products.retrieve(id);
 
   try {
+    //@ts-expect-error
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
       payment_method_types: ['card'],

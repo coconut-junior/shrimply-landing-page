@@ -23,6 +23,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [prices, setPrices] = useState({});
 
+  //fetch products and prices
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(`/api/products`, {
@@ -71,7 +72,6 @@ function App() {
               //@ts-expect-error
               .map((product) => (
                 <ProductCard
-                  //@ts-expect-error
                   id={product.id}
                   title={product.name}
                   src={product.images[0] ?? ''}
@@ -218,7 +218,7 @@ function App() {
           <p>
             Copyright © 2025 Prismaprawn Digital LLC
             <br></br>
-            Disclaimer: LEGO is a trademark of the LEGO Group of companies
+            Disclaimer: LEGO® is a trademark of the LEGO Group of companies
             (https://www.lego.com) which does not sponsor, authorize or endorse
             this site.
           </p>
