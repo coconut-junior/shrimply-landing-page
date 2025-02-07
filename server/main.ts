@@ -42,9 +42,7 @@ app.post(
         const price = lineItem.price;
         const productId = price?.product;
         const product = await stripe.products.retrieve(productId);
-        console.log(product);
-
-        const link = downloadLinks[product.metadata.url];
+        const link = product.metadata.url;
 
         console.log(
           `emailing ${customerName} link at ${customerEmail}. they purchased ${name} which can be downloaded at ${link}`

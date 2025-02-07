@@ -43,7 +43,6 @@ function App() {
         //@ts-expect-error
         priceDict[priceInfo.id] = priceInfo.unit_amount;
       }
-      console.log(data);
       setPrices(priceDict);
       setLoading(false);
     };
