@@ -1,7 +1,7 @@
 import express from 'express';
 import Stripe from 'stripe';
 import 'dotenv/config';
-import { sendEmail } from './Email';
+import { sendEmail } from './Email.ts';
 
 const app = express();
 const PORT = 1234;
