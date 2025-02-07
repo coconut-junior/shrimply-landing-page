@@ -16,9 +16,7 @@ interface productProps {
   price: number;
 }
 
-const productIds = { 'Floating Tiki Bar': 1, 'Garden Fountain': 2 };
-
-function buy(name: string) {
+function buy(id: string) {
   const domain = window.location.origin;
   fetch(`${domain}/create-checkout-session`, {
     method: 'POST',
@@ -26,7 +24,7 @@ function buy(name: string) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      items: [{ id: productIds[name], quantity: 1 }],
+      products: [id],
     }),
   })
     .then((res) => {
@@ -59,6 +57,7 @@ function currencyFormat(num: number) {
 }
 
 export function ProductCard({
+  id,
   title,
   src,
   partCount,
@@ -78,7 +77,7 @@ export function ProductCard({
             </a>
           ) : (
             <a>
-              <CheckoutForm name={title}></CheckoutForm>
+              <CheckoutForm id={id}></CheckoutForm>
             </a>
           )}
         </>

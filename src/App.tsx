@@ -43,7 +43,6 @@ function App() {
         priceDict[priceInfo.id] = priceInfo.unit_amount;
       }
       console.log(data);
-      console.log(priceDict);
       setPrices(priceDict);
       setLoading(false);
     };
@@ -66,17 +65,23 @@ function App() {
         <Flex id="productList" justify="center" gap="10px" wrap={true}>
           {
             //@ts-expect-error
-            products.data.map((product) => (
-              <ProductCard
-                title={product.name}
-                src={product.images[0] ?? ''}
-                partCount={0}
-                signupEvent={showModal}
-                loading={loading}
-                //@ts-expect-error
-                price={prices[product.default_price] ?? 0}
-              ></ProductCard>
-            ))
+            products.data
+              //@ts-expect-error
+              .filter((product) => product.active) //only show active products
+              //@ts-expect-error
+              .map((product) => (
+                <ProductCard
+                  //@ts-expect-error
+                  id={product.id}
+                  title={product.name}
+                  src={product.images[0] ?? ''}
+                  partCount={product.metadata.pieces ?? 0}
+                  signupEvent={showModal}
+                  loading={loading}
+                  //@ts-expect-error
+                  price={prices[product.default_price] ?? 0}
+                ></ProductCard>
+              ))
           }
         </Flex>
       );

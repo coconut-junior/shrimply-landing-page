@@ -9,11 +9,6 @@ console.log(`key is ${process.env.STRIPE_PRIVATE_KEY}`);
 
 app.use(express.static('dist')); // Serves all static files
 
-const storeItems = new Map([
-  [1, { priceInCents: 500, name: 'Floating Tiki Bar' }],
-  [2, { priceInCents: 400, name: 'Garden Fountain' }],
-]);
-
 const downloadLinks = {
   'Floating Tiki Bar': 'google.com',
 };
@@ -65,25 +60,19 @@ app.use(express.json());
 app.post('/api/embedded-checkout', async (req, res) => {
   console.log('received checkout request');
 
-  const line_items = req.body.items.map((item) => {
-    const storeItem = storeItems.get(item.id);
-    return {
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: storeItem.name,
-        },
-        unit_amount: storeItem.priceInCents,
-      },
-      quantity: item.quantity,
-    };
-  });
+  const id = req.body.items[0].id;
+  const product = await stripe.products.retrieve(id);
 
   try {
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
       payment_method_types: ['card'],
-      line_items: line_items,
+      line_items: [
+        {
+          price: product.default_price, // Use the product's default price ID
+          quantity: 1,
+        },
+      ],
       mode: 'payment',
       return_url: `${process.env.CLIENT_URL}`,
     });
