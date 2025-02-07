@@ -107,6 +107,15 @@ app.get('/api/prices', async (req, res) => {
   }
 });
 
+app.get('/paymentSuccess', async (req, res) => {
+  res.redirect('/paymentSuccess.html');
+});
+
+//redirect everything else to main page. must be last!!
+app.get('*', (req, res) => {
+  res.redirect('/404.html');
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
