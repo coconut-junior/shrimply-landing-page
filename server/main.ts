@@ -35,7 +35,6 @@ app.post(
         );
 
         const lineItem = line_items.data[0];
-        const name = lineItem.description;
         const price = lineItem.price;
         const productId = price?.product;
         const product = await stripe.products.retrieve(productId);

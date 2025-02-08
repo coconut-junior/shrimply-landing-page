@@ -74,7 +74,7 @@ export function ProductCard({
         </>
       }
       style={{ width: 300, borderColor: 'lightgray', overflow: 'hidden' }}
-      cover={<Image src={src}></Image>}
+      cover={<Image src={src} alt={title} title={title}></Image>}
     >
       <Card.Meta title={title}></Card.Meta>
       <Flex gap="10px" justify="center" style={{ padding: '5px' }}>

@@ -83,7 +83,13 @@ function App() {
               ))
           }
         </Flex>
-      );
+      )
+      else {
+        //no products
+        return (<Flex>{
+          <h1>Check back later! Our site is still under construction.</h1>
+          }</Flex>)
+      };
   };
 
   return (
