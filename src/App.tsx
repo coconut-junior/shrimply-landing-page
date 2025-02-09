@@ -8,6 +8,7 @@ import {
   Collapse,
   Modal,
   Menu,
+  Skeleton,
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
 import { ArrowRightOutlined } from '@ant-design/icons';
@@ -60,7 +61,7 @@ function App() {
 
   const ProductList = () => {
     //@ts-expect-error
-    if (products.data && prices != {})
+    if (products.data && prices != {}) {
       return (
         <Flex id="productList" justify="center" gap="10px" wrap={true}>
           {
@@ -84,12 +85,15 @@ function App() {
           }
         </Flex>
       )
-      else {
-        //no products
-        return (<Flex>{
-          <h1>Check back later! Our site is still under construction.</h1>
-          }</Flex>)
-      };
+    }
+    else {
+      //no products yet
+      return (
+      <Flex id="productList" justify="center" gap="10px" wrap={true}>
+        <Skeleton active />
+        </Flex>
+      )
+    }
   };
 
   return (
@@ -220,6 +224,9 @@ function App() {
         </Content>
 
         <Footer>
+          <ul>
+            <li><a href="mailto:support@prismaprawn.com">Contact us</a></li>
+          </ul>
           <p>
             Copyright © 2025 Prismaprawn Digital LLC
             <br></br>

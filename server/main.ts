@@ -74,7 +74,7 @@ app.post('/api/embedded-checkout', async (req, res) => {
         },
       ],
       mode: 'payment',
-      return_url: `${process.env.CLIENT_URL}`,
+      return_url: `${process.env.CLIENT_URL}/paymentSuccess`,
     });
 
     res.json({ id: session.id, client_secret: session.client_secret });

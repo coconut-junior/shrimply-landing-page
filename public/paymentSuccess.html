@@ -1,9 +1,94 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+        <style>
+            * {
+                font-family: Arial, Helvetica, sans-serif;
+                border-radius: 0;
+                margin:auto;
+                padding:0;
+                text-align: center;
+            }
+            #wrapper {
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            body {
+                background-color: blue;
+                height: 100vh;
+                width: 100vw;
+            }
+            #orderCard {
+                height: auto;
+                width: 400px;
+                border-radius: 20px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                padding: 40px;
+                gap: 20px;
+                margin:auto;
+            }
+        </style>
     </head>
     <body>
-        <h1>payment success</h1>
+        
+        <div id = "wrapper">
+            <div id = "orderCard">
+                <img src = "./order_confirmation.png" width="100px">
+                <h1>Woohoo! We've Got <br>Your Order!</h1>
+                <p>You should receive an email shortly containing a download link to your instructions. <br>Please be patient and check your spam folder if the email does not arrive within a few minutes.</p>
+                <div height="20px"></div>
+                <hr>
+                <h3>Order Summary</h3>
+                <p></p>
+            </div>
+        </div>
+        <script>
+            const count = 200,
+            defaults = {
+                origin: { y: 0.5 },
+            };
+
+            function fire(particleRatio, opts) {
+            confetti(
+                Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio),
+                })
+            );
+            }
+
+            fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+            });
+
+            fire(0.2, {
+            spread: 60,
+            });
+
+            fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8,
+            });
+
+            fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2,
+            });
+
+            fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+            });
+        </script>
     </body>
 </html>
