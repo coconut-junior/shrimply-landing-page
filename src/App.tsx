@@ -9,10 +9,12 @@ import {
   Modal,
   Menu,
   Skeleton,
+  theme as antdTheme,
+  Switch,
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
-import { ArrowRightOutlined } from '@ant-design/icons';
-import { magenta } from '@ant-design/colors';
+import { ArrowRightOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
+import { magenta, gray } from '@ant-design/colors';
 import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
 import { Popup } from './Popup.tsx';
@@ -23,6 +25,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [prices, setPrices] = useState({});
+  const [darkMode, setDarkMode] = usePersistedState(false);
 
   //fetch products and prices
   useEffect(() => {
@@ -98,10 +101,9 @@ function App() {
   return (
     <ConfigProvider
       theme={{
-        token: {
-          // Seed Token
-          colorPrimary: '#000000',
-        },
+        algorithm: darkMode
+          ? antdTheme.darkAlgorithm
+          : antdTheme.defaultAlgorithm,
       }}
     >
       <Layout>
@@ -110,11 +112,11 @@ function App() {
           mode="horizontal"
           items={navItems}
           style={{
+            backgroundColor: darkMode ? gray[9] : 'white',
+            borderColor: darkMode ? gray[7] : 'white',
+            paddingTop: 20,
             justifyContent: 'center',
-            border: 'none',
-            padding: '10px',
-            paddingTop: '20px',
-            paddingBottom: '0px',
+            zIndex: '2',
           }}
         ></Menu>
         <Content id="wrapper">
@@ -126,7 +128,7 @@ function App() {
             justify="center"
             align="center"
             style={{
-              backgroundColor: magenta[1],
+              backgroundColor: darkMode ? gray[7] : magenta[2],
               marginBottom: 80,
             }}
           >
@@ -224,7 +226,7 @@ function App() {
           <br></br>
         </Content>
 
-        <Footer>
+        <Footer style={{ backgroundColor: darkMode ? gray[7] : 'white' }}>
           <ul>
             <li>
               <a href="mailto:support@prismaprawn.com">Contact us</a>
@@ -239,6 +241,13 @@ function App() {
               <a href="/refund-policy">Refund Policy</a>
             </li>
           </ul>
+          <Switch
+            checkedChildren=<MoonFilled />
+            unCheckedChildren=<SunFilled />
+            onChange={() => {
+              setDarkMode(!darkMode);
+            }}
+          />
           <p>
             Copyright © 2025 Prismaprawn Digital LLC
             <br></br>
@@ -265,3 +274,16 @@ function App() {
 }
 
 export default App;
+
+function usePersistedState(defaultValue: any, key?: any) {
+  const [value, setValue] = useState(() => {
+    const storedValue = window.localStorage.getItem(key);
+    return storedValue !== null ? JSON.parse(storedValue) : defaultValue;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue];
+}
