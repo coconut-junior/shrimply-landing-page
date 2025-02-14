@@ -58,7 +58,6 @@ export function ProductCard({
 }: productProps) {
   return (
     <Card
-      hoverable
       loading={loading}
       extra={
         <>
@@ -73,7 +72,7 @@ export function ProductCard({
           )}
         </>
       }
-      style={{ width: 300, borderColor: 'lightgray', overflow: 'hidden' }}
+      style={{ width: 300, overflow: 'hidden' }}
       cover={<Image src={src} alt={title} title={title}></Image>}
     >
       <Card.Meta title={title}></Card.Meta>
