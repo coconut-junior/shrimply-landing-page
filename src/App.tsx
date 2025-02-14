@@ -242,6 +242,7 @@ function App() {
             </li>
           </ul>
           <Switch
+            checked={darkMode}
             checkedChildren=<MoonFilled />
             unCheckedChildren=<SunFilled />
             onChange={() => {
