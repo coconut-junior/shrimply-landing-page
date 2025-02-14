@@ -21,6 +21,15 @@ body {
   overflow-x: hidden;
 }
 
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  padding-bottom: 10px;
+}
+
 h1 {
   font-size: clamp(2.25rem, calc(2rem + 3vw), 4.5rem);
   line-height: 1.1;
@@ -38,7 +47,7 @@ h3 {
 }
 
 ul {
-  font-size:18px;
+  font-size: 18px;
 }
 
 p {
@@ -50,7 +59,7 @@ p {
   #hero {
     border-radius: 20px 20px 200px 20px;
   }
-  
+
   #hero-image {
     top: -100px;
   }

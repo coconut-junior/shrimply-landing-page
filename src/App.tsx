@@ -84,15 +84,14 @@ function App() {
               ))
           }
         </Flex>
-      )
-    }
-    else {
+      );
+    } else {
       //no products yet
       return (
-      <Flex id="productList" justify="center" gap="10px" wrap={true}>
-        <Skeleton active />
+        <Flex id="productList" justify="center" gap="10px" wrap={true}>
+          <Skeleton active />
         </Flex>
-      )
+      );
     }
   };
 
@@ -107,6 +106,7 @@ function App() {
     >
       <Layout>
         <Menu
+          selectable={false}
           mode="horizontal"
           items={navItems}
           style={{
@@ -114,6 +114,7 @@ function App() {
             border: 'none',
             padding: '10px',
             paddingTop: '20px',
+            paddingBottom: '0px',
           }}
         ></Menu>
         <Content id="wrapper">
@@ -225,7 +226,18 @@ function App() {
 
         <Footer>
           <ul>
-            <li><a href="mailto:support@prismaprawn.com">Contact us</a></li>
+            <li>
+              <a href="mailto:support@prismaprawn.com">Contact us</a>
+            </li>
+            <li>
+              <a href="#faq">FAQs</a>
+            </li>
+            <li>
+              <a href="/terms">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/refund-policy">Refund Policy</a>
+            </li>
           </ul>
           <p>
             Copyright © 2025 Prismaprawn Digital LLC

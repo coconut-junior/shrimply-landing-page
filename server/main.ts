@@ -106,6 +106,14 @@ app.get('/api/prices', async (req, res) => {
   }
 });
 
+app.get('/terms', async (req, res) => {
+  res.redirect('/terms.html');
+});
+
+app.get('/refund-policy', async (req, res) => {
+  res.redirect('/refund-policy.html');
+});
+
 app.get('/paymentSuccess', async (req, res) => {
   res.redirect('/paymentSuccess.html');
 });
