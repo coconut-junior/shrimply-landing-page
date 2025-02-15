@@ -1,3 +1,7 @@
+* {
+  font-family: "Ubuntu Sans", serif;
+}
+
 #root {
   margin: auto;
 }
@@ -21,6 +25,25 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+}
+
+.break-column {
+  height: 100px;
+  width: 0;
+  background-color: red;
+}
+
+.footerNav {
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.footerNav li {
+  padding-top:10px;
+  padding-right: 80px;
 }
 
 .ant-modal-content, .ant-modal-body {
@@ -69,5 +92,10 @@ p {
 
   #hero-image {
     top: -100px;
+  }
+
+  .footerNav {
+    width: 100%;
+    max-height: unset;
   }
 }

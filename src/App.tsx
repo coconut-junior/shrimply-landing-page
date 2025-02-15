@@ -19,6 +19,7 @@ import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
 import { Popup } from './Popup.tsx';
 import { faqItems, navItems } from './Navigation.tsx';
+import CardLogos from './CardLogos.tsx';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -227,20 +228,28 @@ function App() {
         </Content>
 
         <Footer style={{ backgroundColor: darkMode ? gray[7] : 'white' }}>
-          <ul>
+          <ul className = "footerNav">
             <li>
-              <a href="mailto:support@prismaprawn.com">Contact us</a>
+              <a href="mailto:support@prismaprawn.com?subject=Help" target="_top">Contact us</a>
             </li>
             <li>
-              <a href="#faq">FAQs</a>
+              <a href="#faq" target="_blank">FAQs</a>
             </li>
             <li>
-              <a href="/terms">Terms of Service</a>
+              <a href="/terms" target="_blank">Terms of Service</a>
             </li>
             <li>
-              <a href="/refund-policy">Refund Policy</a>
+              <a href="/refund-policy" target="_blank">Refund Policy</a>
             </li>
+            <li>
+              <a href = "https://www.bricklink.com/v2/wanted/upload.page" target="_blank">Buy LEGO Parts</a>
+            </li>
+            <li>
+              <a href = "https://www.webrick.com/toolkit" target="_blank">Buy Webrick Parts</a>
+            </li>
+            <CardLogos darkMode = {darkMode}/>
           </ul>
+          
           <Switch
             checked={darkMode}
             checkedChildren=<MoonFilled />
