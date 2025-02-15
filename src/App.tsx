@@ -13,7 +13,7 @@ import {
   Switch,
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
-import { ArrowRightOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
+import { SunFilled, MoonFilled, ShoppingOutlined } from '@ant-design/icons';
 import { magenta, gray } from '@ant-design/colors';
 import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
@@ -102,6 +102,10 @@ function App() {
   return (
     <ConfigProvider
       theme={{
+        token: {
+          // Seed Token
+          colorPrimary: '#000000',
+        },
         algorithm: darkMode
           ? antdTheme.darkAlgorithm
           : antdTheme.defaultAlgorithm,
@@ -160,20 +164,19 @@ function App() {
                 wrap={true}
                 style={{ width: '100%' }}
               >
-                <Button
-                  onClick={showModal}
-                  type="primary"
-                  size="large"
-                  style={{ padding: '24px' }}
-                >
-                  Get Free Instructions
-                  <ArrowRightOutlined></ArrowRightOutlined>
-                </Button>
+                
                 <a href="#products">
-                  <Button size="large" style={{ padding: '24px' }}>
-                    Browse All
+                  <Button size="large" shape='round' type = 'primary' icon={<ShoppingOutlined/>} >
+                    Shop Now
                   </Button>
                 </a>
+                <Button
+                  onClick={showModal}
+                  size="large"
+                  shape='round'
+                >
+                  Get Free Instructions
+                </Button>
               </Flex>
             </Flex>
             <Image
