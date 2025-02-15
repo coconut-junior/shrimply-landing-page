@@ -20,6 +20,7 @@ import { useState, useEffect } from 'react';
 import { Popup } from './Popup.tsx';
 import { faqItems, navItems } from './Navigation.tsx';
 import CardLogos from './CardLogos.tsx';
+import Link from 'antd/es/typography/Link';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -234,22 +235,22 @@ function App() {
         <Footer style={{ backgroundColor: darkMode ? gray[7] : 'white' }}>
           <ul className = "footerNav">
             <li>
-              <a href="mailto:support@prismaprawn.com?subject=Help" target="_top">Contact us</a>
+              <Link href="mailto:support@prismaprawn.com?subject=Help" target="_top">Contact us</Link>
             </li>
             <li>
-              <a href="#faq" target="_blank">FAQs</a>
+              <Link href="#faq" target="_blank">FAQs</Link>
             </li>
             <li>
-              <a href="/terms" target="_blank">Terms of Service</a>
+              <Link href="/terms" target="_blank">Terms of Service</Link>
             </li>
             <li>
-              <a href="/refund-policy" target="_blank">Refund Policy</a>
+              <Link href="/refund-policy" target="_blank">Refund Policy</Link>
             </li>
             <li>
-              <a href = "https://www.bricklink.com/v2/wanted/upload.page" target="_blank">Buy LEGO Parts</a>
+              <Link href = "https://www.bricklink.com/v2/wanted/upload.page" target="_blank">Buy LEGO Parts</Link>
             </li>
             <li>
-              <a href = "https://www.webrick.com/toolkit" target="_blank">Buy Webrick Parts</a>
+              <Link href = "https://www.webrick.com/toolkit" target="_blank">Buy Webrick Parts</Link>
             </li>
             <CardLogos darkMode = {darkMode}/>
           </ul>
