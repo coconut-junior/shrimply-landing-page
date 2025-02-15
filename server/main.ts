@@ -75,6 +75,7 @@ app.post('/api/embedded-checkout', async (req, res) => {
       ],
       mode: 'payment',
       return_url: `${process.env.CLIENT_URL}/paymentSuccess`,
+      automatic_tax: {enabled: true},
     });
 
     res.json({ id: session.id, client_secret: session.client_secret });

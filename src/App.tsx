@@ -266,6 +266,7 @@ function App() {
         mask={true}
         wrapClassName="modal"
         width={'700px'}
+        style = {{padding:0}}
       >
         <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
         <Popup></Popup>

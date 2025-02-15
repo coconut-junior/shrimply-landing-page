@@ -23,6 +23,11 @@ body {
   overflow-x: hidden;
 }
 
+.ant-modal-content, .ant-modal-body {
+  padding:0 !important;
+  overflow: hidden;
+}
+
 ul {
   padding: 0;
 }
