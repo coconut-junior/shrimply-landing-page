@@ -74,7 +74,7 @@ const faqItems: CollapseProps['items'] = [
     label: 'LEGO pieces cost too much! What can I do?',
     children: (
       <p>
-        If you're not willing to pay full price for genuine LEGO parts, we have
+        If you're not comfortable paying full price for genuine LEGO parts, we have
         a solution for you! There are many LEGO compatible part vendors that
         offer high quality parts at a fraction of the price.
         <br></br>

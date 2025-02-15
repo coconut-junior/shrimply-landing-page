@@ -13,7 +13,7 @@ import {
   Switch,
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
-import { SunFilled, MoonFilled, ShoppingOutlined } from '@ant-design/icons';
+import { SunFilled, MoonFilled, ShoppingOutlined, GiftOutlined } from '@ant-design/icons';
 import { magenta, gray } from '@ant-design/colors';
 import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
@@ -104,7 +104,7 @@ function App() {
       theme={{
         token: {
           // Seed Token
-          colorPrimary: '#000000',
+          colorPrimary: darkMode ? magenta[3] : '#000000',
         },
         algorithm: darkMode
           ? antdTheme.darkAlgorithm
@@ -174,6 +174,7 @@ function App() {
                   onClick={showModal}
                   size="large"
                   shape='round'
+                  icon={<GiftOutlined/>}
                 >
                   Get Free Instructions
                 </Button>
