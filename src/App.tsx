@@ -263,7 +263,7 @@ function App() {
             <br></br>
             Disclaimer: LEGO® is a trademark of the LEGO Group of companies
             (https://www.lego.com) which does not sponsor, authorize or endorse
-            this site.
+            this site. All other original logos and/or brands used are property of their respective owners.
           </p>
         </Footer>
       </Layout>
