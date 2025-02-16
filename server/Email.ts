@@ -24,6 +24,7 @@ async function sendEmail(
   productImage: string
 ) {
   const headerImage = 'https://prismaprawn.com/';
+  const buttonColor = '#000000';
   const html = `<!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
@@ -142,16 +143,6 @@ async function sendEmail(
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center" style="line-height:10px">
 																	<div style="max-width: 68px;"><a href="https://prismaprawn.com" target="_blank" style="outline:none" tabindex="-1"><img src="${clientURL}/shrimp-icon.png" style="display: block; height: auto; border: 0; width: 100%;" width="68" alt="Prismaprawn Logo" title="Prismaprawn Logo" height="auto"></a></div>
-																</div>
-															</td>
-														</tr>
-													</table>
-													<div class="spacer_block block-3" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
-													<table class="image_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-																<div class="alignment" align="center" style="line-height:10px">
-																	<div class="fullWidth" style="max-width: 306px;"><a target="_blank" style="outline:none" tabindex="-1"><img src="${headerImage}" style="display: block; height: auto; border: 0; width: 100%;" width="306" alt="Thank You" title="Thank You" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -278,7 +269,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:15px;">
 																<div style="color:#030303;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:20px;line-height:120%;text-align:left;mso-line-height-alt:24px;">
-																	<p style="margin: 0; word-break: break-word;"><strong><span style="word-break: break-word;"><span style="word-break: break-word;">$ 150,50</span></span></strong></p>
+																	<p style="margin: 0; word-break: break-word;"><strong><span style="word-break: break-word;"><span style="word-break: break-word;">$${lineItem.price.unit_amount / 100}.00</span></span></strong></p>
 																</div>
 															</td>
 														</tr>
@@ -335,21 +326,21 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;text-align:center;">
 																<div class="alignment" align="center"><a href="${clientURL}/${link}/instructions.pdf" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="${clientURL}/${link}/instructions.pdf"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="#e17370">
-<v:stroke dashstyle="Solid" weight="1px" color="#E17370"/>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="${clientURL}/${link}/instructions.pdf"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="${buttonColor}">
+<v:stroke dashstyle="Solid" weight="1px" color="${buttonColor}"/>
 <w:anchorlock/>
 <v:textbox inset="0px,0px,0px,0px">
 <center dir="false" style="color:#ffffff;font-family:sans-serif;font-size:16px">
-<![endif]--><span class="button" style="background-color: #e17370; border-bottom: 1px solid #E17370; border-left: 1px solid #E17370; border-radius: 4px; border-right: 1px solid #E17370; border-top: 1px solid #E17370; color: #ffffff; display: inline-block; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: undefined; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; padding-left: 30px; padding-right: 30px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">Download Instructions</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div>
+<![endif]--><span class="button" style="background-color: ${buttonColor}; border-bottom: 1px solid ${buttonColor}; border-left: 1px solid ${buttonColor}; border-radius: 4px; border-right: 1px solid ${buttonColor}; border-top: 1px solid ${buttonColor}; color: #ffffff; display: inline-block; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: undefined; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; padding-left: 30px; padding-right: 30px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">Download Instructions</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div>
 															</td>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;text-align:center;">
 																<div class="alignment" align="center"><a href="${clientURL}/${link}/parts.csv" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="${clientURL}/${link}/parts.csv"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="#e17370">
-<v:stroke dashstyle="Solid" weight="1px" color="#E17370"/>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="${clientURL}/${link}/parts.csv"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="${buttonColor}">
+<v:stroke dashstyle="Solid" weight="1px" color="${buttonColor}"/>
 <w:anchorlock/>
 <v:textbox inset="0px,0px,0px,0px">
 <center dir="false" style="color:#ffffff;font-family:sans-serif;font-size:16px">
-<![endif]--><span class="button" style="background-color: #e17370; border-bottom: 1px solid #E17370; border-left: 1px solid #E17370; border-radius: 4px; border-right: 1px solid #E17370; border-top: 1px solid #E17370; color: #ffffff; display: inline-block; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: undefined; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; padding-left: 30px; padding-right: 30px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">Download Part List</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div>
+<![endif]--><span class="button" style="background-color: ${buttonColor}; border-bottom: 1px solid ${buttonColor}; border-left: 1px solid ${buttonColor}; border-radius: 4px; border-right: 1px solid ${buttonColor}; border-top: 1px solid ${buttonColor}; color: #ffffff; display: inline-block; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: undefined; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; padding-left: 30px; padding-right: 30px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">Download Part List</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div>
 															</td>
 														</tr>
 													</table>
