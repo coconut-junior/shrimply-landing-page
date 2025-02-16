@@ -1,7 +1,6 @@
 //@ts-expect-error
 import nodemailer from 'npm:nodemailer';
 import 'dotenv/config';
-import fs from 'fs';
 const clientURL = process.env.CLIENT_URL;
 
 //MUST SET DENO_TLS_CA_STORE=system for this to work!!
