@@ -1,6 +1,7 @@
 //@ts-expect-error
 import nodemailer from 'npm:nodemailer';
 import 'dotenv/config';
+import fs from 'fs';
 const clientURL = process.env.CLIENT_URL;
 
 //MUST SET DENO_TLS_CA_STORE=system for this to work!!
@@ -23,7 +24,6 @@ async function sendEmail(
   lineItem: any,
   productImage: string
 ) {
-  const headerImage = 'https://prismaprawn.com/';
   const buttonColor = '#000000';
   const html = `<!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
