@@ -1,7 +1,7 @@
 //@ts-expect-error
 import nodemailer from 'npm:nodemailer';
 import 'dotenv/config';
-const clientURL = `key is ${process.env.CLIENT_URL}`;
+const clientURL = process.env.CLIENT_URL;
 
 //MUST SET DENO_TLS_CA_STORE=system for this to work!!
 
@@ -141,7 +141,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div style="max-width: 68px;"><a href="https://prismaprawn.com" target="_blank" style="outline:none" tabindex="-1"><img src="https://99e4151afd.imgdist.com/pub/bfra/y4meflqt/n3j/g79/qaw/shrimp-icon.png" style="display: block; height: auto; border: 0; width: 100%;" width="68" alt="Prismaprawn Logo" title="Prismaprawn Logo" height="auto"></a></div>
+																	<div style="max-width: 68px;"><a href="https://prismaprawn.com" target="_blank" style="outline:none" tabindex="-1"><img src="${clientURL}/shrimp-icon.png" style="display: block; height: auto; border: 0; width: 100%;" width="68" alt="Prismaprawn Logo" title="Prismaprawn Logo" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -151,7 +151,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div class="fullWidth" style="max-width: 306px;"><a href="${link}" target="_blank" style="outline:none" tabindex="-1"><img src="${headerImage}" style="display: block; height: auto; border: 0; width: 100%;" width="306" alt="Thank You" title="Thank You" height="auto"></a></div>
+																	<div class="fullWidth" style="max-width: 306px;"><a target="_blank" style="outline:none" tabindex="-1"><img src="${headerImage}" style="display: block; height: auto; border: 0; width: 100%;" width="306" alt="Thank You" title="Thank You" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -213,7 +213,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad">
 																<div class="alignment" align="center" style="line-height:10px">
-																	<div class="fullWidth" style="max-width: 120px;"><a href="${link}" target="_blank" style="outline:none" tabindex="-1"><img src="${productImage}" style="display: block; height: auto; border: 0; width: 100%;" width="120" alt="Blueberry Coffee Donut" title="Blueberry Coffee Donut" height="auto"></a></div>
+																	<div class="fullWidth" style="max-width: 120px;"><a target="_blank" style="outline:none" tabindex="-1"><img src="${productImage}" style="display: block; height: auto; border: 0; width: 100%;" width="120" alt="${lineItem.description}" title="${lineItem.description}" height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
