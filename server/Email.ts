@@ -270,17 +270,6 @@ async function sendEmail(
 									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 680px; margin: 0 auto;" width="680">
 										<tbody>
 											<tr>
-												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
-													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-														<tr>
-															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:15px;">
-																<div style="color:#030303;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:18px;line-height:120%;text-align:left;mso-line-height-alt:21.599999999999998px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;"><strong><span style="word-break: break-word;">Total</span></strong></span></p>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
 												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
 													<div class="spacer_block block-1 mobile_hide" style="height:25px;line-height:25px;font-size:1px;">&#8202;</div>
 												</td>
@@ -342,17 +331,7 @@ async function sendEmail(
 													</table>
 													<div class="spacer_block block-2" style="height:10px;line-height:10px;font-size:1px;">&#8202;</div>
 													<table class="button_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;text-align:center;">
-																<div class="alignment" align="center"><a href="${link}" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="${link}"  style="height:43px;width:184px;v-text-anchor:middle;" arcsize="9%" fillcolor="#e17370">
-<v:stroke dashstyle="Solid" weight="1px" color="#E17370"/>
-<w:anchorlock/>
-<v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#ffffff;font-family:sans-serif;font-size:16px">
-<![endif]--><span class="button" style="background-color: #e17370; border-bottom: 1px solid #E17370; border-left: 1px solid #E17370; border-radius: 4px; border-right: 1px solid #E17370; border-top: 1px solid #E17370; color: #ffffff; display: inline-block; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: undefined; mso-border-alt: none; padding-bottom: 5px; padding-top: 5px; padding-left: 30px; padding-right: 30px; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span style="word-break: break-word; line-height: 32px;">Download Now</span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></div>
-															</td>
-														</tr>
+														
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:10px;text-align:center;">
 																<div class="alignment" align="center"><a href="${clientURL}/${link}/instructions.pdf" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
