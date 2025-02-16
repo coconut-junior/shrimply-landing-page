@@ -449,7 +449,15 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:20px;padding-left:25px;padding-right:10px;padding-top:10px;">
 																<div style="color:#C0C0C0;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:12px;line-height:180%;text-align:left;mso-line-height-alt:21.6px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #c0c0c0;"><a style="text-decoration: none; color: #C0C0C0;" href="${link}" target="_blank" rel="noopener">www.company.com</a></span><span style="word-break: break-word; color: #c0c0c0;">Company address here<br>+1 123 123 123</span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #c0c0c0;"><a style="text-decoration: none; color: #C0C0C0;" href="${clientURL}" target="_blank" rel="noopener">prismaprawn.com</a></span><span style="word-break: break-word; color: #c0c0c0;">
+																	<br>
+																	4905 Starboard Cir
+																	<br>
+																	Mechanicsburg, PA 17050
+																	<br>
+																	United States
+																	<br>
+																	+1 123 123 123</span></p>
 																</div>
 															</td>
 														</tr>
@@ -458,7 +466,7 @@ async function sendEmail(
 														<tr>
 															<td class="pad" style="padding-bottom:10px;padding-left:25px;padding-right:10px;padding-top:10px;">
 																<div style="color:#C0C0C0;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:12px;line-height:120%;text-align:left;mso-line-height-alt:14.399999999999999px;">
-																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #C0C0C0;">Changed your mind? <a style="text-decoration: none; color: #ffffff;" href="${link}" target="_blank" rel="noopener">Unsubscribe</a> </span></p>
+																	<p style="margin: 0; word-break: break-word;"><span style="word-break: break-word; color: #C0C0C0;">Changed your mind? <a style="text-decoration: none; color: #ffffff;" target="_blank" rel="noopener">Unsubscribe</a> </span></p>
 																</div>
 															</td>
 														</tr>
