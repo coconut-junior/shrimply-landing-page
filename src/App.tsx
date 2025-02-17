@@ -13,7 +13,12 @@ import {
   Switch,
 } from 'antd';
 import { Content, Footer } from 'antd/es/layout/layout';
-import { SunFilled, MoonFilled, ShoppingOutlined, GiftOutlined } from '@ant-design/icons';
+import {
+  SunFilled,
+  MoonFilled,
+  ShoppingOutlined,
+  GiftOutlined,
+} from '@ant-design/icons';
 import { magenta, gray } from '@ant-design/colors';
 import { ProductCard } from './ProductCard.tsx';
 import { useState, useEffect } from 'react';
@@ -135,7 +140,6 @@ function App() {
             align="center"
             style={{
               backgroundColor: darkMode ? gray[7] : magenta[2],
-              marginBottom: 80,
             }}
           >
             <Flex
@@ -165,17 +169,21 @@ function App() {
                 wrap={true}
                 style={{ width: '100%' }}
               >
-                
                 <a href="#products">
-                  <Button size="large" shape='round' type = 'primary' icon={<ShoppingOutlined/>} >
+                  <Button
+                    size="large"
+                    shape="round"
+                    type="primary"
+                    icon={<ShoppingOutlined />}
+                  >
                     Shop Now
                   </Button>
                 </a>
                 <Button
                   onClick={showModal}
                   size="large"
-                  shape='round'
-                  icon={<GiftOutlined/>}
+                  shape="round"
+                  icon={<GiftOutlined />}
                 >
                   Get Free Instructions
                 </Button>
@@ -184,17 +192,17 @@ function App() {
             <Image
               id="hero-image"
               preview={false}
-              style={{ position: 'relative', top: '100px' }}
+              style={{ position: 'relative' }}
               src="./bubba_don.png"
             ></Image>
           </Flex>
+          <div style={{ height: 100 }} />
 
           {/* product list */}
 
-          <Flex vertical={true} style={{ padding: '20px' }}>
-            <h2 id="products">Most Popular Builds</h2>
-            {<ProductList></ProductList>}
-          </Flex>
+          <h2 id="products">Most Popular Builds</h2>
+          <br />
+          {<ProductList></ProductList>}
 
           <Flex vertical={true} style={{ padding: '20px' }}>
             <h2 id="about">About</h2>
@@ -233,28 +241,46 @@ function App() {
         </Content>
 
         <Footer style={{ backgroundColor: darkMode ? gray[7] : 'white' }}>
-          <ul className = "footerNav">
+          <ul className="footerNav">
             <li>
-              <Link href="mailto:support@prismaprawn.com?subject=Help" target="_top">Contact us</Link>
+              <Link
+                href="mailto:support@prismaprawn.com?subject=Help"
+                target="_top"
+              >
+                Contact us
+              </Link>
             </li>
             <li>
-              <Link href="#faq" target="_blank">FAQs</Link>
+              <Link href="#faq" target="_blank">
+                FAQs
+              </Link>
             </li>
             <li>
-              <Link href="/terms" target="_blank">Terms of Service</Link>
+              <Link href="/terms" target="_blank">
+                Terms of Service
+              </Link>
             </li>
             <li>
-              <Link href="/refund-policy" target="_blank">Refund Policy</Link>
+              <Link href="/refund-policy" target="_blank">
+                Refund Policy
+              </Link>
             </li>
             <li>
-              <Link href = "https://www.bricklink.com/v2/wanted/upload.page" target="_blank">Buy LEGO Parts</Link>
+              <Link
+                href="https://www.bricklink.com/v2/wanted/upload.page"
+                target="_blank"
+              >
+                Buy LEGO Parts
+              </Link>
             </li>
             <li>
-              <Link href = "https://www.webrick.com/toolkit" target="_blank">Buy Webrick Parts</Link>
+              <Link href="https://www.webrick.com/toolkit" target="_blank">
+                Buy Webrick Parts
+              </Link>
             </li>
-            <CardLogos darkMode = {darkMode}/>
+            <CardLogos darkMode={darkMode} />
           </ul>
-          
+
           <Switch
             checked={darkMode}
             checkedChildren=<MoonFilled />
@@ -268,7 +294,8 @@ function App() {
             <br></br>
             Disclaimer: LEGO® is a trademark of the LEGO Group of companies
             (https://www.lego.com) which does not sponsor, authorize or endorse
-            this site. All other original logos and/or brands used are property of their respective owners.
+            this site. All other original logos and/or brands used are property
+            of their respective owners.
           </p>
         </Footer>
       </Layout>
@@ -280,10 +307,10 @@ function App() {
         mask={true}
         wrapClassName="modal"
         width={'700px'}
-        style = {{padding:0}}
+        style={{ padding: 0, fill: 'blue' }}
       >
         <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-        <Popup></Popup>
+        <Popup darkMode={darkMode}></Popup>
       </Modal>
     </ConfigProvider>
   );

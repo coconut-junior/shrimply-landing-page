@@ -1,4 +1,7 @@
-export function Popup() {
+export function Popup({ darkMode }: any) {
+  const bgColor = darkMode ? 'black' : 'white';
+  const textColor = darkMode ? 'white' : 'black';
+
   return (
     <form
       action="https://app.kit.com/forms/5693365/subscriptions"
@@ -10,14 +13,18 @@ export function Popup() {
       data-version={5}
       data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":true,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
       min-width="400 500 600 700 800"
-      style={{ backgroundColor: 'rgb(250, 252, 255)', borderRadius: 10 }}
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        borderRadius: 10,
+      }}
     >
       <div className="formkit-background" style={{ opacity: '0.2' }} />
       <div data-style="minimal">
         <div
           className="formkit-header"
           data-element="header"
-          style={{ color: 'rgb(49, 42, 42)', fontSize: 27, fontWeight: 700 }}
+          style={{ fontSize: 27, fontWeight: 700 }}
         >
           <h2>
             🎁 Get Free Custom <br></br>Building Instructions!
@@ -26,7 +33,7 @@ export function Popup() {
         <div
           className="formkit-subheader"
           data-element="subheader"
-          style={{ color: 'rgb(49, 42, 42)', fontSize: 18 }}
+          style={{ fontSize: 18 }}
         >
           <p>
             Unlock exclusive LEGO building guides delivered straight to your
@@ -52,8 +59,6 @@ export function Popup() {
               required={true}
               type="email"
               style={{
-                borderColor: 'rgb(49, 42, 42)',
-                color: 'rgb(49, 42, 42)',
                 borderRadius: 4,
                 fontWeight: 400,
               }}
@@ -76,7 +81,7 @@ export function Popup() {
         <div
           className="formkit-guarantee"
           data-element="guarantee"
-          style={{ color: 'rgb(49, 42, 42)', fontSize: 13, fontWeight: 400 }}
+          style={{ fontSize: 13, fontWeight: 400 }}
         >
           <p>We won't send you spam. Unsubscribe at any time.</p>
         </div>

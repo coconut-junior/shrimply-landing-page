@@ -1,5 +1,5 @@
 * {
-  font-family: "Ubuntu Sans", serif;
+  font-family: 'Ubuntu Sans', serif;
 }
 
 #root {
@@ -46,12 +46,13 @@ body {
 }
 
 .footerNav li {
-  padding-top:10px;
+  padding-top: 10px;
   padding-right: 80px;
 }
 
-.ant-modal-content, .ant-modal-body {
-  padding:0 !important;
+.ant-modal-content,
+.ant-modal-body {
+  padding: 0 !important;
   overflow: hidden;
 }
 
@@ -90,13 +91,18 @@ p {
   font-size: 16px;
 }
 
+#hero-image {
+  top: 100px;
+}
+
 @media only screen and (max-width: 900px) {
   #hero {
     border-radius: 20px 20px 200px 20px;
+    gap: 0px;
   }
 
   #hero-image {
-    top: -100px;
+    top: 0;
   }
 
   .footerNav {
